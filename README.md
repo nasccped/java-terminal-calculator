@@ -64,7 +64,7 @@ Here are some steps to get, compile and use this project:
    want to remove all compiled outputs from you machine, you can use
    the Makefile for it too:
    ```shell
-   make run
+   make clean
    ```
 
 <!-- links -->
