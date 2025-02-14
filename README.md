@@ -19,6 +19,46 @@ To run this project, you'll need:
    manually you can use the Makefile present in the root directory.
    Just have [GNU Make][gnu-make-website] installed on your machine.
 
+Usage
+-----
+
+Here are some steps to get, compile and use this project:
+
+1. **Clone:** open you terminal and clone the repository:
+   ```shell
+   git clone https://github.com/nasccped/java-terminal-calculator
+   ```
+
+2. **Clear:** enter on the cloned repo and clean the unnecessary git
+   folder:
+   ```shell
+   cd java-terminal-calculator
+   rm -rf .git # for bash/shell terminal
+   # If you're on Windows Powershell, you can use this:
+   # Remove-Item -Recurse -Force .git
+   ```
+
+3. **Compile:** use the Makefile tool to compile the program. This
+   command will print something like _"javac src/..."_. If is there
+   some error, the program won't be compiled and an error message
+   will be displayed.
+   ```shell
+   make build
+   ```
+
+4. **Enjoy:** now, you can run the program by using the same
+   Makefile:
+   ```shell
+   make run
+   ```
+
+5. **Source clear (extra):** If you've already used the program and
+   want to remove all compiled outputs from you machine, you can use
+   the Makefile for it too:
+   ```shell
+   make run
+   ```
+
 <!-- links -->
 [git-website]: https://git-scm.com/
 [oracle-website]: https://www.oracle.com/
