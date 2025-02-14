@@ -2,8 +2,9 @@ CC=javac
 RC=java
 SRC=./src
 OUT=./out
-PKGS=$(SRC)/nasccped.jtc
-FLS=$(foreach direc,$(PKGS),$(wildcard $(direc)/*.java))
+PKGNS=nasccped.jtc
+PKGLS=$(addprefix $(SRC)/,$(PKGNS))
+FLS=$(foreach direc,$(PKGLS),$(wildcard $(direc)/*.java))
 MAIN_RUN=nasccped/jtc/JavaTermCalc
 EXPEC=$(foreach javaf,$(FLS),$(patsubst ./src/nasccped.jtc/%.java,out/nasccped/jtc/%.class,$(javaf)))
 
