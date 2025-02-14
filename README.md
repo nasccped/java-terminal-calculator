@@ -19,6 +19,14 @@ To run this project, you'll need:
    manually you can use the Makefile present in the root directory.
    Just have [GNU Make][gnu-make-website] installed on your machine.
 
+> [!WARNING]
+> 
+> This project was built in OpenJDK 17 (17.0.14) from
+> **Alpine Linux** package manager (`apk`). If you're using an older
+> version, it probably won't work. If you're using a newer version /
+> other OS, it may not work. If so, consider opening an Issue at
+> [issues page][issue-page]
+
 Usage
 -----
 
@@ -63,3 +71,4 @@ Here are some steps to get, compile and use this project:
 [git-website]: https://git-scm.com/
 [oracle-website]: https://www.oracle.com/
 [gnu-make-website]: https://www.gnu.org/software/make/
+[issue-page]: https://github.com/nasccped/java-terminal-calculator/issues
