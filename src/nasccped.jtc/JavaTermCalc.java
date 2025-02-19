@@ -1,14 +1,18 @@
 package nasccped.jtc;
 
-import static nasccped.jtc.utils.Visuals.clearTerminal;
+import nasccped.jtc.utils.Visuals;
+import nasccped.jtc.utils.IO;
 
 public class JavaTermCalc {
 
+    private static final IO io = new IO();
+    private static final Visuals vsl = new Visuals();
+
     public static void main(String[] args) {
-        clearTerminal();
-        System.out.println();
-        System.out.println("  Hello, calculator,");
-        System.out.println("  From a \u001b[1;34mcool terminal\u001b[0m!");
-        System.out.println();
+        vsl.clearTerminal();
+        io.println();
+        io.println("  Hello, calculator,");
+        io.println("  From a \u001b[1;34mcool terminal\u001b[0m!");
+        io.println();
     }
 }
