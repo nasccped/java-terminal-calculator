@@ -1,6 +1,6 @@
 package nasccped.jtc;
 
-import static nasccped.jtc.Visuals.clearTerminal;
+import static nasccped.jtc.utils.Visuals.clearTerminal;
 
 public class JavaTermCalc {
 
