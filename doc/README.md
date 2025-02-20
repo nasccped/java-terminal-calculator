@@ -14,3 +14,21 @@ Here you'll find cool content about this project such as:
 > If you think there is some misinformation / something important
 > missing / something you would like to know, consider opening an
 > issue.
+
+Doc summary
+-----------
+
+Use this summary as doc guide:
+
+> [!TIP]
+>
+> All the pages will have the following name format:
+> - `nn-ttt-ttttt`
+>
+> Where `nn` means the page number (order identifier) and `ttt-tttt`
+> means the page title.
+
+1. [The idea][01-the-idea]
+
+<!-- pages link -->
+[01-the-idea]: ./01-the-idea.md
