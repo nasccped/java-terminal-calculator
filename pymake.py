@@ -26,6 +26,8 @@ COMMANDS_AND_DESC = [
     ("clean", f"eliminates all the compiled outputs by removing the {OUT_DIR}")
 ]
 
+MAX_ARGS_LEN = 4
+
 def command_exists(command_name: str) -> bool:
     return st.which(command_name) is not None
 
@@ -136,6 +138,11 @@ def main():
 
     if not all_args:
         py_all(COMMANDS_AND_DESC)
+        print()
+        quit()
+
+    if len(all_args) > MAX_ARGS_LEN:
+        print(f"  Arg count exceeded the limit ({MAX_ARGS_LEN}). \x1b[1;31mAborting\x1b[0m!")
         print()
         quit()
 
