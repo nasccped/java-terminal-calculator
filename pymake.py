@@ -102,9 +102,9 @@ def py_build_from_files(files: Optional[list[str]]):
 
 def py_run_from(target: str):
 
-    w_out_path = os.path.join(OUT_DIR, target.replace(".", "/"), BYTECODE_EXT)
+    replaced_name = os.path.join(OUT_DIR, target.replace(".", "/")) + BYTECODE_EXT
 
-    abs = os.path.abspath(w_out_path)
+    abs = os.path.abspath(replaced_name)
 
     if not os.path.exists(abs):
         print(f"  Target class {abs} \x1b[1;31mcouldn't\x1b[0m be found")
@@ -174,7 +174,7 @@ def main():
                 print()
 
             case "run":
-                py_run_from(BYTECODE_EXT)
+                py_run_from(FINAL_TARGET)
                 print()
 
             case "clean":
