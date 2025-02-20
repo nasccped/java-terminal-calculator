@@ -4,8 +4,8 @@ Java Terminal Calculator 🧮
 This project aims to help a friend in a side project and work on
 knowledge in software structuring + OOP.
 
-Project Requirements
---------------------
+Project Requirements 📋
+----------------------
 
 To run this project, you'll need:
 
@@ -27,8 +27,8 @@ To run this project, you'll need:
 > other OS, it may not work. If so, consider opening an Issue at
 > [issues page][issue-page]
 
-Usage
------
+Usage 🪁
+-------
 
 Here are some steps to get, compile and use this project:
 
@@ -67,8 +67,8 @@ Here are some steps to get, compile and use this project:
    make clean
    ```
 
-Extra
------
+Extra ☝️
+-------
 
 Did you want to know more about this project? Check the
 [doc][doc-readme] folder!
