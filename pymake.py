@@ -145,7 +145,6 @@ def main():
         print()
         quit()
 
-    print("  Everything will work \x1b[1;32mout fine\x1b[0m!")
     print()
 
 if __name__ == "__main__":
