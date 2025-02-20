@@ -46,14 +46,15 @@ def get_java_files(at: str) -> Optional[list[str]]:
 
     return result
 
-def py_clear() -> bool:
+def py_clear():
 
     try:
         st.rmtree(OUT_DIR)
-        return True
+        print(f"  {OUT_DIR} has been \x1b[1;32mremoved\x1b[0m!")
 
     except:
-        return False
+        print(f"  {OUT_DIR} couldn't be \x1b[1;32mremoved\x1b[0m!")
+        print("  It probably \x1b[1;31mdoesn't\x1b[0m exists")
 
 def main():
     print()
