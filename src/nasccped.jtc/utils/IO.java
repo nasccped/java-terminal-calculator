@@ -1,15 +1,15 @@
 package nasccped.jtc.utils;
 
 public class IO {
-    public static void println() {
+    public void println() {
         System.out.println();
     }
 
-    public static void println(Object value) {
+    public void println(Object value) {
         System.out.println(value);
     }
 
-    public static void print(Object value) {
+    public void print(Object value) {
         System.out.print(value);
     }
 }
