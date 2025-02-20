@@ -2,11 +2,11 @@ CC=javac
 RC=java
 SRC=./src
 OUT=./out
-PKGNS=nasccped.jtc nasccped.jtc/utils
+PKGNS=nasccped/jtc nasccped/jtc/utils
 PKGLS=$(addprefix $(SRC)/,$(PKGNS))
 FLS=$(foreach direc,$(PKGLS),$(wildcard $(direc)/*.java))
 MAIN_RUN=nasccped/jtc/JavaTermCalc
-EXPEC=$(foreach javaf,$(FLS),$(patsubst ./src/nasccped.jtc/%.java,out/nasccped/jtc/%.class,$(javaf)))
+EXPEC=$(foreach javaf,$(FLS),$(patsubst ./src/nasccped/jtc/%.java,out/nasccped/jtc/%.class,$(javaf)))
 
 all: clean build run
 
