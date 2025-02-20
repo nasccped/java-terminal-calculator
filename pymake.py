@@ -76,7 +76,7 @@ def py_clear_by_dir(target: str):
         print(f"  {target} has been \x1b[1;32mremoved\x1b[0m!")
 
     except:
-        print(f"  {target} couldn't be \x1b[1;32mremoved\x1b[0m!")
+        print(f"  {target} couldn't be \x1b[1;31mremoved\x1b[0m!")
         print("  It probably \x1b[1;31mdoesn't\x1b[0m exists")
 
 def py_build_from_files(files: Optional[list[str]]):
