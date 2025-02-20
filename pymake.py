@@ -152,6 +152,15 @@ def main():
         print()
         quit()
 
+    valid_commands = [cmd[0] for cmd in COMMANDS_AND_DESC]
+
+    if any(arg not in valid_commands for arg in all_args):
+        print("  Invalid arguments were passed.")
+        print("  try running with no arguments to \x1b[1;32mget help\x1b[0m...")
+        print("  \x1b[1;31mAborting\x1b[0m!")
+        print()
+        quit()
+
     print()
 
 if __name__ == "__main__":
