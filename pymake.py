@@ -161,6 +161,25 @@ def main():
         print()
         quit()
 
+    for arg in all_args:
+        match arg:
+
+            case "all":
+                py_all(COMMANDS_AND_DESC)
+                print()
+
+            case "build":
+                py_clear_by_dir(OUT_DIR)
+                print()
+
+            case "run":
+                py_run_from(BYTECODE_EXT)
+                print()
+
+            case "clean":
+                py_clear_by_dir(OUT_DIR)
+                print()
+
     print()
 
 if __name__ == "__main__":
