@@ -2,6 +2,9 @@
 
 # required lib to command exists check
 import shutil as st
+# to returns and finds
+from typing import Optional
+import os
 
 # required commands for our script
 COMPILE_CMD = "javac"
@@ -12,6 +15,36 @@ def clear_terminal():
 
 def command_exists(command_name: str) -> bool:
     return st.which(command_name) is not None
+
+# function to get all java files (recursively) from a given directory
+# can return None if directory doesn't exists
+# also can raise an error if theres a file with no file extension:
+#       - some_dir/file
+def get_java_files(at: str) -> Optional[list[str]]:
+
+    # check if path exists
+    abspath = os.path.abspath(at)
+    if not os.path.exists(abspath):
+        return None
+
+    # starts the list
+    result = list()
+
+    # foreach item at the given path
+    for item in os.listdir(at):
+
+        # if it's a java file
+        if item.endswith(".java"):
+            result.append(item)
+
+        # if no file extension (possibly a dir)
+        elif "." not in item:
+            # check if it's valid
+            childs = get_java_files(os.path.join(at, item))
+            if childs is not None:
+                result.extend(childs)
+
+    return result
 
 def main():
 
