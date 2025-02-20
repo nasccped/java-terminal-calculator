@@ -2,7 +2,7 @@
 
 # required lib to command exists check
 import shutil as st
-# to returns and finds
+# to return, execute and find
 from typing import Optional
 import os
 
@@ -12,6 +12,7 @@ RUN_CMD = "java"
 
 # project dirs
 OUT_DIR = os.path.join(".", "out")
+SRC_DIR = os.path.join(".", "src")
 
 def command_exists(command_name: str) -> bool:
     return st.which(command_name) is not None
@@ -35,7 +36,7 @@ def get_java_files(at: str) -> Optional[list[str]]:
 
         # if it's a java file
         if item.endswith(".java"):
-            result.append(item)
+            result.append(os.path.join(at, item))
 
         # if no file extension (possibly a dir)
         elif "." not in item:
@@ -46,15 +47,37 @@ def get_java_files(at: str) -> Optional[list[str]]:
 
     return result
 
-def py_clear():
+# clear compilation's output
+def py_clear_by_dir(target: str):
 
     try:
-        st.rmtree(OUT_DIR)
-        print(f"  {OUT_DIR} has been \x1b[1;32mremoved\x1b[0m!")
+        st.rmtree(target)
+        print(f"  {target} has been \x1b[1;32mremoved\x1b[0m!")
 
     except:
-        print(f"  {OUT_DIR} couldn't be \x1b[1;32mremoved\x1b[0m!")
+        print(f"  {target} couldn't be \x1b[1;32mremoved\x1b[0m!")
         print("  It probably \x1b[1;31mdoesn't\x1b[0m exists")
+
+def py_build_from_files(files: Optional[list[str]]):
+
+    if files is None:
+        print("  The program \x1b[1;31mcouldn't\x1b[1;31m be compiled")
+        print("  The source code is missing (returned \x1b[1;31mNone\x1b[0m)")
+        print()
+        print("  Try using \x1b[1;33m`make build`\x1b[0m tool instead!")
+        print()
+        print(
+            "  You can also check documentation at \x1b[1;32m"
+            + "https://github.com/nasccped/java-terminal-calculator/blob/main/doc/doc-README.md"
+            + " for more information."
+        )
+        return
+
+    print("  The program is read to be \x1b[1;32mcompiled\x1b[0m!")
+    print("  Any \x1b[1;31merror\x1b[0m or \x1b[1;33mwarning\x1b[0m will be displayed bellow:")
+    print()
+
+    os.system(f"{COMPILE_CMD} {' '.join(files)} -d {OUT_DIR}")
 
 def main():
     print()
