@@ -7,10 +7,15 @@ import shutil as st
 COMPILE_CMD = "javac"
 RUN_CMD = "java"
 
+def clear_terminal():
+    print("\x1b[2J\x1b[H", end = "")
+
 def command_exists(command_name: str) -> bool:
     return st.which(command_name) is not None
 
 def main():
+
+    clear_terminal()
 
     # if compile command doesn't exists
     if not command_exists(COMPILE_CMD):
@@ -22,7 +27,7 @@ def main():
         print(f"  \x1b[1;32m{RUN_CMD}\x1b[0m command not found. \x1b[1;31mAborting\x1b[0m!")
         quit()
 
-    print("Everything will work \x1b[1;32mout fine\x1b[0m!")
+    print("  Everything will work \x1b[1;32mout fine\x1b[0m!")
 
 if __name__ == "__main__":
     main()
