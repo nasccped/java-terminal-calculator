@@ -67,8 +67,15 @@ Here are some steps to get, compile and use this project:
    make clean
    ```
 
+Extra
+-----
+
+Did you want to know more about this project? Check the
+[doc][doc-readme] folder!
+
 <!-- links -->
 [git-website]: https://git-scm.com/
 [oracle-website]: https://www.oracle.com/
 [gnu-make-website]: https://www.gnu.org/software/make/
 [issue-page]: https://github.com/nasccped/java-terminal-calculator/issues
+[doc-readme]: https://github.com/nasccped/java-terminal-calculator/blob/main/doc/README.md
