@@ -56,17 +56,22 @@ def py_clear() -> bool:
         return False
 
 def main():
+    print()
+
     # if compile command doesn't exists
     if not command_exists(COMPILE_CMD):
         print(f"  \x1b[1;32m{COMPILE_CMD}\x1b[0m command not found. \x1b[1;31mAborting\x1b[0m!")
+        print()
         quit()
 
     # if run command doesn't exists
     if not command_exists(RUN_CMD):
         print(f"  \x1b[1;32m{RUN_CMD}\x1b[0m command not found. \x1b[1;31mAborting\x1b[0m!")
+        print()
         quit()
 
     print("  Everything will work \x1b[1;32mout fine\x1b[0m!")
+    print()
 
 if __name__ == "__main__":
     main()
