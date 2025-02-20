@@ -169,7 +169,8 @@ def main():
                 print()
 
             case "build":
-                py_clear_by_dir(OUT_DIR)
+                sources = get_java_files(SRC_DIR)
+                py_build_from_files(sources)
                 print()
 
             case "run":
@@ -179,8 +180,6 @@ def main():
             case "clean":
                 py_clear_by_dir(OUT_DIR)
                 print()
-
-    print()
 
 if __name__ == "__main__":
     main()
