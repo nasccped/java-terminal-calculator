@@ -5,6 +5,8 @@ import shutil as st
 # to return, execute and find
 from typing import Optional
 import os
+# get args from cmdl
+import sys
 
 # required commands for our script
 COMPILE_CMD = "javac"
@@ -113,6 +115,14 @@ def main():
     # if run command doesn't exists
     if not command_exists(RUN_CMD):
         print(f"  \x1b[1;32m{RUN_CMD}\x1b[0m command not found. \x1b[1;31mAborting\x1b[0m!")
+        print()
+        quit()
+
+    all_args = sys.argv[1 : ]
+
+    if len(all_args) != len(set(all_args)):
+        print("  You called the same argument twice and this isn't allowed...")
+        print("  \x1b[1;31mAborting\x1b[0m!")
         print()
         quit()
 
