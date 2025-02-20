@@ -10,6 +10,9 @@ import os
 COMPILE_CMD = "javac"
 RUN_CMD = "java"
 
+# project dirs
+OUT_DIR = os.path.join(".", "out")
+
 def clear_terminal():
     print("\x1b[2J\x1b[H", end = "")
 
@@ -45,6 +48,15 @@ def get_java_files(at: str) -> Optional[list[str]]:
                 result.extend(childs)
 
     return result
+
+def py_clear() -> bool:
+
+    try:
+        st.rmtree(OUT_DIR)
+        return True
+
+    except:
+        return False
 
 def main():
 
