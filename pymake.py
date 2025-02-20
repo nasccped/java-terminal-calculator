@@ -19,6 +19,13 @@ SRC_DIR = os.path.join(".", "src")
 BYTECODE_EXT = ".class"
 FINAL_TARGET = "nasccped.jtc.JavaTermCalc"
 
+COMMANDS_AND_DESC = [
+    ("all"  , "prints this screen"),
+    ("build", "compile the program"),
+    ("run"  , "check .class outputs, and the runs the program"),
+    ("clean", f"eliminates all the compiled outputs by removing the {OUT_DIR}")
+]
+
 def command_exists(command_name: str) -> bool:
     return st.which(command_name) is not None
 
@@ -51,6 +58,13 @@ def get_java_files(at: str) -> Optional[list[str]]:
                 result.extend(childs)
 
     return result
+
+def py_all(cmd_desc: set[tuple]):
+    print("  Welcome to the \x1b[1;33mpymake.py\x1b[0m, the JTC Makefile's alternative!")
+    print()
+    print("  With \x1b[1;33mpymake\x1b[0m script, you can use the following commands:")
+    for (c, d) in cmd_desc:
+        print(f"     \x1b[1;34m{c + (' ' * (8 - len(c)))}\x1b[0m  {d}")
 
 # clear compilation's output
 def py_clear_by_dir(target: str):
@@ -119,6 +133,11 @@ def main():
         quit()
 
     all_args = sys.argv[1 : ]
+
+    if not all_args:
+        py_all(COMMANDS_AND_DESC)
+        print()
+        quit()
 
     if len(all_args) != len(set(all_args)):
         print("  You called the same argument twice and this isn't allowed...")
