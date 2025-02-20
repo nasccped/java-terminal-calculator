@@ -78,4 +78,4 @@ Did you want to know more about this project? Check the
 [oracle-website]: https://www.oracle.com/
 [gnu-make-website]: https://www.gnu.org/software/make/
 [issue-page]: https://github.com/nasccped/java-terminal-calculator/issues
-[doc-readme]: https://github.com/nasccped/java-terminal-calculator/blob/main/doc/README.md
+[doc-readme]: https://github.com/nasccped/java-terminal-calculator/blob/main/doc/doc-README.md
