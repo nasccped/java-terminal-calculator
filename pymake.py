@@ -14,6 +14,9 @@ RUN_CMD = "java"
 OUT_DIR = os.path.join(".", "out")
 SRC_DIR = os.path.join(".", "src")
 
+BYTECODE_EXT = ".class"
+FINAL_TARGET = "nasccped.jtc.JavaTermCalc"
+
 def command_exists(command_name: str) -> bool:
     return st.which(command_name) is not None
 
@@ -78,6 +81,25 @@ def py_build_from_files(files: Optional[list[str]]):
     print()
 
     os.system(f"{COMPILE_CMD} {' '.join(files)} -d {OUT_DIR}")
+
+def py_run_from(target: str):
+
+    w_out_path = os.path.join(OUT_DIR, target.replace(".", "/"), BYTECODE_EXT)
+
+    abs = os.path.abspath(w_out_path)
+
+    if not os.path.exists(abs):
+        print(f"  Target class {abs} \x1b[1;31mcouldn't\x1b[0m be found")
+        print("  Try using \x1b[1;33m`build`\x1b[0m command earlier!")
+        print()
+        print("  If this behavior persists, try using the Makefile instead")
+        print("  or you can also check the repository documentation:")
+        print("    \x1b[1;32mhttps://github.com/nasccped/java-terminal-calculator/blob/main/doc/doc-README.md\x1b[0m")
+        return
+    
+    print("  The program is \x1b[1;32mready\x1b[0m to run...")
+
+    os.system(f"{RUN_CMD} --class-path {OUT_DIR} {target}")
 
 def main():
     print()
