@@ -16,9 +16,11 @@ RUN_CMD = "java"
 OUT_DIR = os.path.join(".", "out")
 SRC_DIR = os.path.join(".", "src")
 
+# file catch helpers
 BYTECODE_EXT = ".class"
 FINAL_TARGET = "nasccped.jtc.JavaTermCalc"
 
+# program available commands and it's descriptions
 COMMANDS_AND_DESC = [
     ("all"  , "prints this screen"),
     ("build", "compile the program"),
@@ -61,6 +63,7 @@ def get_java_files(at: str) -> Optional[list[str]]:
 
     return result
 
+# when `all` command is called
 def py_all(cmd_desc: set[tuple]):
     print("  Welcome to the \x1b[1;33mpymake.py\x1b[0m, the JTC Makefile's alternative!")
     print()
@@ -68,7 +71,7 @@ def py_all(cmd_desc: set[tuple]):
     for (c, d) in cmd_desc:
         print(f"     \x1b[1;34m{c + (' ' * (8 - len(c)))}\x1b[0m  {d}")
 
-# clear compilation's output
+# when `clean` command is called -> clear compilation's output
 def py_clear_by_dir(target: str):
 
     try:
@@ -79,8 +82,10 @@ def py_clear_by_dir(target: str):
         print(f"  {target} couldn't be \x1b[1;31mremoved\x1b[0m!")
         print("  It probably \x1b[1;31mdoesn't\x1b[0m exists")
 
+# when `build` command is called -> build bytecodes from source
 def py_build_from_files(files: Optional[list[str]]):
 
+    # if no files found
     if files is None:
         print("  The program \x1b[1;31mcouldn't\x1b[1;31m be compiled")
         print("  The source code is missing (returned \x1b[1;31mNone\x1b[0m)")
@@ -94,18 +99,20 @@ def py_build_from_files(files: Optional[list[str]]):
         )
         return
 
+    # else, alert + compile
     print("  The program is read to be \x1b[1;32mcompiled\x1b[0m!")
     print("  Any \x1b[1;31merror\x1b[0m or \x1b[1;33mwarning\x1b[0m will be displayed bellow:")
     print()
-
     os.system(f"{COMPILE_CMD} {' '.join(files)} -d {OUT_DIR}")
 
+# when `run` command is called -> run bytecodes
 def py_run_from(target: str):
 
+    # get target name path + turn into absolute
     replaced_name = os.path.join(OUT_DIR, target.replace(".", "/")) + BYTECODE_EXT
-
     abs = os.path.abspath(replaced_name)
 
+    # if file not found
     if not os.path.exists(abs):
         print(f"  Target class {abs} \x1b[1;31mcouldn't\x1b[0m be found")
         print("  Try using \x1b[1;33m`build`\x1b[0m command earlier!")
@@ -115,10 +122,11 @@ def py_run_from(target: str):
         print("    \x1b[1;32mhttps://github.com/nasccped/java-terminal-calculator/blob/main/doc/doc-README.md\x1b[0m")
         return
     
+    # else, run the program
     print("  The program is \x1b[1;32mready\x1b[0m to run...")
-
     os.system(f"{RUN_CMD} --class-path {OUT_DIR} {target}")
 
+# main func
 def main():
     print()
 
@@ -134,26 +142,30 @@ def main():
         print()
         quit()
 
+    # skip first argument (the program's name)
     all_args = sys.argv[1 : ]
 
+    # using falsy for empty list detection
     if not all_args:
         py_all(COMMANDS_AND_DESC)
         print()
         quit()
 
+    # if args lenght exceed the maximum
     if len(all_args) > MAX_ARGS_LEN:
         print(f"  Arg count exceeded the limit ({MAX_ARGS_LEN}). \x1b[1;31mAborting\x1b[0m!")
         print()
         quit()
 
+    # if repeated commands
     if len(all_args) != len(set(all_args)):
         print("  You called the same argument twice and this isn't allowed...")
         print("  \x1b[1;31mAborting\x1b[0m!")
         print()
         quit()
 
+    # test if some command is invalid
     valid_commands = [cmd[0] for cmd in COMMANDS_AND_DESC]
-
     if any(arg not in valid_commands for arg in all_args):
         print("  Invalid arguments were passed.")
         print("  try running with no arguments to \x1b[1;32mget help\x1b[0m...")
@@ -161,9 +173,9 @@ def main():
         print()
         quit()
 
+    # for each arg passed through cmdl
     for arg in all_args:
         match arg:
-
             case "all":
                 py_all(COMMANDS_AND_DESC)
                 print()
@@ -181,5 +193,6 @@ def main():
                 py_clear_by_dir(OUT_DIR)
                 print()
 
+# when script is called
 if __name__ == "__main__":
     main()
