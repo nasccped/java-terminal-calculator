@@ -14,10 +14,12 @@ To run this project, you'll need:
    [Git][git-website].
 2. **OpenJDK:** you will need the official _Java tools_ collection
    that can be found at the [Oracle website][oracle-website].
-3. **Make:** Instead of using a specific IDE for Java, this program
-   was developed in an external IDE. To avoid compiling all the files
-   manually you can use the Makefile present in the root directory.
-   Just have [GNU Make][gnu-make-website] installed on your machine.
+3. **Make or Python:** Instead of using a specific IDE for Java, this
+   program was developed in an external IDE. To avoid compiling all
+   the files manually you can use the Makefile present in the root
+   directory. Just have [GNU Make][gnu-make-website] installed on
+   your machine. _(Recently I added a builder in **Python**. You can
+   use it too. Ceck third step at [Usage](#usage-) section)_
 
 > [!WARNING]
 > 
@@ -37,7 +39,7 @@ Here are some steps to get, compile and use this project:
    git clone https://github.com/nasccped/java-terminal-calculator
    ```
 
-2. **Clear:** enter on the cloned repo and clean the unnecessary git
+2. **Remove git:** enter on the cloned repo and clean the unnecessary git
    folder:
    ```shell
    cd java-terminal-calculator
@@ -46,26 +48,74 @@ Here are some steps to get, compile and use this project:
    # Remove-Item -Recurse -Force .git
    ```
 
-3. **Compile:** use the Makefile tool to compile the program. This
-   command will print something like _"javac src/..."_. If is there
-   some error, the program won't be compiled and an error message
-   will be displayed.
-   ```shell
-   make build
-   ```
+3. **Compile, run and clear:** to use this program, you'll need to
+   compile and run it, right? instead of using and IDE, I chose
+   to use two build scripts:
+   - Makefile, a simple but efficient one;
+   - Python, an alternative for those that don't have GNU make on
+     their machines.
 
-4. **Enjoy:** now, you can run the program by using the same
-   Makefile:
-   ```shell
-   make run
-   ```
+   > [!NOTE]
+   >
+   > Use the following table as guide to use both scripts. You can
+   > chose the one you prefer. If something goes wrong, consider
+   > opening an issue
 
-5. **Source clear (extra):** If you've already used the program and
-   want to remove all compiled outputs from you machine, you can use
-   the Makefile for it too:
-   ```shell
-   make clean
-   ```
+   <table>
+      <tr>
+         <th>        </th>
+         <th>Makefile</th>
+         <th>Python  </th>
+      </tr>
+      <tr>
+        <th align="left">Script call</th>
+          <td>make                                         </td>
+          <td>python (maybe python3 if you're at UNIX like)</td>
+      </tr>
+      <tr>
+        <th align="left">Usage</th>
+          <td>make <i>command</i>                                                     </td>
+          <td>python pymake.py <i>command</i> (read the tip section bellow this table)</td>
+      </tr>
+      <tr>
+         <th align="left">Command 1 (all / no args)</th>
+           <td> -                                                                </td>
+           <td>print the script usage, such as available commands and his effects</td>
+      </tr>
+      <tr>
+         <th align="left">Command 2 (build)</th>
+           <td colspan="2">build the source code outputs (.class files)</td>
+      </tr>
+      <tr>
+         <th align="left">Command 3 (run)</th>
+           <td colspan="2">run the compilation outputs (.class files)</td>
+      </tr>
+      <tr>
+         <th align="left">Command 4 (clean)</th>
+           <td colspan="2">clear the compilation outpus (.class files)</td>
+      </tr>
+   </table>
+
+   > [!TIP]
+   >
+   > 1. If you're at an UNIX like system, you can turn the python's
+   >    builder into an executable with the following command:
+   >
+   >    ```shell
+   >    chmod +x pymake.py
+   >    ```
+   >
+   >    Now, you can run the script by calling `./pymake.py \<arg\>`
+   >    instead of `python pymake.py`
+   >
+   > 2. You can use multiple commands at once, but make sure if
+   >    they're at the correct order:
+   >
+   >    ```shell
+   >    ./pymake.py build run clean # will work
+   >    ./pymake.py run clean build # won't work. How can JVM execute a not
+   >                                # compiled source?
+   >    ```
 
 Extra ☝️
 -------
