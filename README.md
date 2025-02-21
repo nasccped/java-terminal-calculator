@@ -55,7 +55,7 @@ Here are some steps to get, compile and use this project:
    - Python, an alternative for those that don't have GNU make on
      their machines.
 
-   | [![NOTE BADGE][note-badge]](#) | Use the following table as guide to use both scripts. You can chose the one you prefer. If something goes wrong, consider opening an issue |
+   | [![NOTE BADGE][note-badge]](#) | Use the following table as guide to use both scripts. You can chose the one you prefer. If something goes wrong, consider read the [doc][doc-readme] / opening an issue |
    |-|-|
 
 
