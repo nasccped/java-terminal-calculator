@@ -100,7 +100,7 @@ def py_build_from_files(files: Optional[list[str]]):
         return
 
     # else, alert + compile
-    print("  The program is read to be \x1b[1;32mcompiled\x1b[0m!")
+    print("  The program is ready to be \x1b[1;32mcompiled\x1b[0m!")
     print("  Any \x1b[1;31merror\x1b[0m or \x1b[1;33mwarning\x1b[0m will be displayed bellow:")
     print()
     os.system(f"{COMPILE_CMD} {' '.join(files)} -d {OUT_DIR}")
