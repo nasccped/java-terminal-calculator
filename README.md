@@ -105,7 +105,7 @@ Here are some steps to get, compile and use this project:
             python's builder into an executable with the following command:</br>
             <strong>chmod +x pymake.py</strong></br>
             Now, you can run the script by calling
-            `./pymake.py \<arg\>` instead of `python pymake.py`
+            `./pymake.py [ARG]` instead of `python pymake.py`
          </td>
       </tr>
       <tr>
