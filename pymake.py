@@ -18,7 +18,7 @@ SRC_DIR = os.path.join(".", "src")
 
 # file catch helpers
 BYTECODE_EXT = ".class"
-FINAL_TARGET = "nasccped.jtc.JavaTermCalc"
+FINAL_TARGET = "nasccped/jtc/JavaTermCalc"
 
 # program available commands and it's descriptions
 COMMANDS_AND_DESC = [
@@ -109,7 +109,7 @@ def py_build_from_files(files: Optional[list[str]]):
 def py_run_from(target: str):
 
     # get target name path + turn into absolute
-    replaced_name = os.path.join(OUT_DIR, target.replace(".", "/")) + BYTECODE_EXT
+    replaced_name = os.path.join(OUT_DIR, target) + BYTECODE_EXT
     abs = os.path.abspath(replaced_name)
 
     # if file not found
