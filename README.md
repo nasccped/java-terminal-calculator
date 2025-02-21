@@ -136,4 +136,3 @@ Did you want to know more about this project? Check the
 
 <!-- badges -->
 [note-badge]: https://img.shields.io/badge/note-1F6FEB?style=for-the-badge
-[tip-badge]: 
