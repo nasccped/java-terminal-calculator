@@ -12,7 +12,7 @@ public class JavaTermCalc {
         vsl.clearTerminal();
         io.println();
         io.println("  Hello, calculator,");
-        io.println("  From a \u001b[1;34mcool terminal\u001b[0m!");
+        io.println("  From a \u001b[1;33mnew branch(dev)\u001b[0m!");
         io.println();
     }
 }
