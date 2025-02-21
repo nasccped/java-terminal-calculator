@@ -55,11 +55,9 @@ Here are some steps to get, compile and use this project:
    - Python, an alternative for those that don't have GNU make on
      their machines.
 
-   > [!NOTE]
-   >
-   > Use the following table as guide to use both scripts. You can
-   > chose the one you prefer. If something goes wrong, consider
-   > opening an issue
+   | [![NOTE BADGE][note-badge]](#) | Use the following table as guide to use both scripts. You can chose the one you prefer. If something goes wrong, consider opening an issue |
+   |-|-|
+
 
    <table>
       <tr>
@@ -96,26 +94,32 @@ Here are some steps to get, compile and use this project:
       </tr>
    </table>
 
-   > [!TIP]
-   >
-   > 1. If you're at an UNIX like system, you can turn the python's
-   >    builder into an executable with the following command:
-   >
-   >    ```shell
-   >    chmod +x pymake.py
-   >    ```
-   >
-   >    Now, you can run the script by calling `./pymake.py \<arg\>`
-   >    instead of `python pymake.py`
-   >
-   > 2. You can use multiple commands at once, but make sure if
-   >    they're at the correct order:
-   >
-   >    ```shell
-   >    ./pymake.py build run clean # will work
-   >    ./pymake.py run clean build # won't work. How can JVM execute a not
-   >                                # compiled source?
-   >    ```
+   <table>
+      <tr>
+         <th colspan="2" align="center"><img alt="TIP BADGE" src="https://img.shields.io/badge/tip-238636?style=for-the-badge"></th>
+      <tr>
+      <tr>
+         <th>1</th>
+         <td>
+            If you're at an UNIX like system, you can turn the
+            python's builder into an executable with the following command:</br>
+            <strong>chmod +x pymake.py</strong></br>
+            Now, you can run the script by calling
+            `./pymake.py \<arg\>` instead of `python pymake.py`
+         </td>
+      </tr>
+      <tr>
+         <th>2</th>
+         <td>
+            You can use multiple commands at once, but make sure if
+            they're at the correct order:</br>
+            <strong>./pymake.py build run clean</strong>
+            <i>will work</i></br>
+            <strong>./pymake.py run clean build</strong>
+            <i>won't work. How can JVM execute a not compiled source?</i>
+         </td>
+      </tr>
+   </table>
 
 Extra ☝️
 -------
@@ -129,3 +133,7 @@ Did you want to know more about this project? Check the
 [gnu-make-website]: https://www.gnu.org/software/make/
 [issue-page]: https://github.com/nasccped/java-terminal-calculator/issues
 [doc-readme]: https://github.com/nasccped/java-terminal-calculator/blob/main/doc/doc-README.md
+
+<!-- badges -->
+[note-badge]: https://img.shields.io/badge/note-1F6FEB?style=for-the-badge
+[tip-badge]: 
