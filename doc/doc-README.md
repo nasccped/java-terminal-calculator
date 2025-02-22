@@ -29,7 +29,7 @@ Use this summary as doc guide:
 > means the page title.
 
 1. [The idea][01-the-idea]
-2. [Build Scripts][02-build-scripts]
+2. [Build scripts][02-build-scripts]
 3. [How to implement][03-how-to-implement]
 
 <!-- pages link -->
