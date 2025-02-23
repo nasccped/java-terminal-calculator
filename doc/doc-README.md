@@ -31,8 +31,10 @@ Use this summary as doc guide:
 1. [The idea][01-the-idea]
 2. [Build scripts][02-build-scripts]
 3. [How to implement][03-how-to-implement]
+  - [03.01 | Logical stuff][03.01-logical-stuff]
 
 <!-- pages link -->
 [01-the-idea]: ./01-the-idea.md
 [02-build-scripts]: ./02-build-scripts.md
 [03-how-to-implement]: ./03-how-to-implement.md
+[03.01-logical-stuff]: ./03.01-logical-stuff.md
