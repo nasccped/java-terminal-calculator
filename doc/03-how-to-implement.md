@@ -24,9 +24,9 @@ Easy to implement, right? But let's take a look at our obstacles:
 
 1. How can I print all this logical stuff in a pretty way at
    terminal?
-2. How can I implement error printing at terminal? What's the
+2. How can I respect the math laws preserving readability?
+3. How can I implement error printing at terminal? What's the
    pretties way?
-3. How can I respect the math laws preserving readability?
 4. Can I build this with some programming principle
    (OOP, Modularity, ...)?
 5. How much easy-to-use can I make it?
