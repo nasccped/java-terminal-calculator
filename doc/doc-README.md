@@ -28,9 +28,9 @@ Use this summary as doc guide:
 > Where `nn` means the page number (order identifier) and `ttt-tttt`
 > means the page title.
 
-1. [The idea][01-the-idea]
-2. [Build scripts][02-build-scripts]
-3. [How to implement][03-how-to-implement]
+- [01 | The idea][01-the-idea]
+- [02 | Build scripts][02-build-scripts]
+- [03 | How to implement][03-how-to-implement]
   - [03.01 | Logical stuff][03.01-logical-stuff]
 
 <!-- pages link -->
