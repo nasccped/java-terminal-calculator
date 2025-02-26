@@ -32,9 +32,11 @@ Use this summary as doc guide:
 - [02 | Build scripts][02-build-scripts]
 - [03 | How to implement][03-how-to-implement]
   - [03.01 | Logical stuff][03.01-logical-stuff]
+  - [03.02 | Math laws][03.02-math-laws]
 
 <!-- pages link -->
 [01-the-idea]: ./01-the-idea.md
 [02-build-scripts]: ./02-build-scripts.md
 [03-how-to-implement]: ./03-how-to-implement.md
 [03.01-logical-stuff]: ./03.01-logical-stuff.md
+[03.02-math-laws]: ./03.02-math-laws.md
