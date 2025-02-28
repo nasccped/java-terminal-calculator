@@ -4,7 +4,7 @@ import nasccped.jtc.utils.IO;
 
 public class Calculator {
 
-    private final IO io = new IO();
+    private final IO io = new IO(2);
 
     public void showUI() {
 
