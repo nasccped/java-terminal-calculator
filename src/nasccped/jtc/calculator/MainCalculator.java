@@ -4,31 +4,20 @@ import nasccped.jtc.utils.IO;
 import nasccped.jtc.utils.StringUtils;
 import nasccped.jtc.utils.Visuals;
 
-public class Calculator {
+public class MainCalculator {
 
     private final IO io = new IO(2);
-    private final Visuals vsl = new Visuals();
     private final StringUtils stut = new StringUtils();
+    private final CalcUI cui = new CalcUI();
+    private final Visuals vsl = new Visuals();
 
-    public void showUI() {
-
-        io.println();
-        io.println(stut.concat(vsl.boldMagenta,
-                               "Java Terminal Calculator",
-                               vsl.resetEscape));
-
-        
-        io.println(stut.concat(vsl.boldMagenta,
-                               "========================",
-                               vsl.resetEscape));
-        io.println();
-
+    public void init() {
+        cui.showUI();
         io.println("This is the terminal calculator!");
         io.println(stut.concat("I'm still ",
                                vsl.boldWhite,
                                "working on it!",
                                vsl.resetEscape));
-
         io.println();
     }
 }
