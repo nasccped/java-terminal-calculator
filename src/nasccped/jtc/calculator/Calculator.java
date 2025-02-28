@@ -14,12 +14,12 @@ public class Calculator {
 
         io.println();
         io.println(stut.concat(vsl.boldMagenta,
-                               "Calculator",
+                               "Java Terminal Calculator",
                                vsl.resetEscape));
 
         
         io.println(stut.concat(vsl.boldMagenta,
-                               "==========",
+                               "========================",
                                vsl.resetEscape));
         io.println();
 
