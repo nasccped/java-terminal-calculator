@@ -13,14 +13,13 @@ public class CalcUI {
     private void printTitle() {
         // title text
         io.println();
-        io.println(stut.concat(vsl.boldMagenta,
+        io.println(stut.concat(vsl.getBodyColorByName("magenta"),
                                getTitle(),
-                               vsl.resetEscape));
-
+                               vsl.getBodyColorByName("reset")));
         // title bottom border
-        io.println(stut.concat(vsl.boldMagenta,
+        io.println(stut.concat(vsl.getBodyColorByName("magenta"),
                                "=".repeat(getTitle().length()),
-                               vsl.resetEscape));
+                               vsl.getBodyColorByName("reset")));
         io.println();
     }
 

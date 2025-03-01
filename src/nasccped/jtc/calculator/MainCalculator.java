@@ -15,9 +15,9 @@ public class MainCalculator {
         cui.showUI();
         io.println("This is the terminal calculator!");
         io.println(stut.concat("I'm still ",
-                               vsl.boldWhite,
+                               vsl.getBodyColorByName("white"),
                                "working on it!",
-                               vsl.resetEscape));
+                               vsl.getBodyColorByName("reset")));
         io.println();
     }
 }
