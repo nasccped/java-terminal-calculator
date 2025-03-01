@@ -121,6 +121,11 @@ Here are some steps to get, compile and use this project:
       </tr>
    </table>
 
+> [!WARNING]
+>
+> Test commands such as `bdtst`, `rntst` and `cltst` are only
+> available at the Makefile script (not python).
+
 Extra ☝️
 -------
 
