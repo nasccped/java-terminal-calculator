@@ -33,6 +33,7 @@ Use this summary as doc guide:
 - [03 | How to implement][03-how-to-implement]
   - [03.01 | Logical stuff][03.01-logical-stuff]
   - [03.02 | Math laws][03.02-math-laws]
+  - [03.03 | Error handling][03.03-error-handling]
 
 <!-- pages link -->
 [01-the-idea]: ./01-the-idea.md
@@ -40,3 +41,4 @@ Use this summary as doc guide:
 [03-how-to-implement]: ./03-how-to-implement.md
 [03.01-logical-stuff]: ./03.01-logical-stuff.md
 [03.02-math-laws]: ./03.02-math-laws.md
+[03.03-error-handling]: ./03.03-error-handling.md
