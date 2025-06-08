@@ -20,7 +20,7 @@ Here are some steps to get, compile and use this project:
 
 1. **Clone:** open you terminal and clone the repository
    ```sh
-   git clone https://github.com/nasccped/java-terminal-calculator
+   git clone --depth 1 https://github.com/nasccped/java-terminal-calculator
    ```
 
 2. **Remove git:** enter on the cloned repo and clean the unnecessary git
