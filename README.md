@@ -42,4 +42,4 @@ Extra ☝️
 -------
 
 Did you want to know more about this project? Check the
-[doc](./blob/main/doc/00-README.md) folder!
+[doc](./blob/main/docs/00-README.md) folder!
