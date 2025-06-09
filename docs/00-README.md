@@ -38,3 +38,27 @@ When trying to do a different kind of program, I though:
 > others!
 
 And here it is!
+
+## How to read the docs?
+
+The documentation is organized by the following schema:
+
+```txt
++ root
++---+ docs
+|   +--- AA-BBBB.md
+|   +--- XX-YYYY.md
+|   +--- (...)
++---- (...)
+```
+
+- `AA` and `XX` will always be numeric (`00`, `01`, `..`). It means
+  the doc file order (probably chronological).
+- `BBBB` and `YYYY` will always be alphanumeric (`TREE-ORGANIZE`,
+  `EXPRESSION-EVALUATING`, `....`). It means the doc file
+  meaning / subbject covered
+
+> [!TIP]
+>
+> You can read the entire documentation. You can skip to the part
+> that interests you. They both work well!
