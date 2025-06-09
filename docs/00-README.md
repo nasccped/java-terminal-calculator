@@ -23,3 +23,6 @@ with a simple idea:
 - build the main logic on terminal;
 - refactor until looks good (code structure);
 - then, handle it with a good UI for mobile.
+
+And then, he asked me to try to develop an alternative version for
+the terminal. I accepted the challenge!
