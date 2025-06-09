@@ -26,3 +26,15 @@ with a simple idea:
 
 And then, he asked me to try to develop an alternative version for
 the terminal. I accepted the challenge!
+
+## What is the `docs`? What is the `00-README`?
+
+This project isn't an API/library or something else. It's just a
+program, so what's the `docs`?
+
+When trying to do a different kind of program, I though:
+
+> I've never tried this before. I can document all my journey to help
+> others!
+
+And here it is!
