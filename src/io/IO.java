@@ -1,6 +1,8 @@
 package io;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Class for fast printing / inputing with extra feature (left-pad, prompt)
@@ -77,7 +79,7 @@ public class IO {
     public String input() {
         System.out.print(getPadString());
         setContinueLine(false);
-        return nextLine();
+        return polished(nextLine());
     }
 
     /**
@@ -88,7 +90,7 @@ public class IO {
     public String promptedInput() {
         System.out.print(getPadString() + defaultPrompt);
         setContinueLine(false);
-        return nextLine();
+        return polished(nextLine());
     }
 
     /**
@@ -99,7 +101,7 @@ public class IO {
     public String promptedInput(String prompt) {
         System.out.print(getPadString() + prompt);
         setContinueLine(false);
-        return nextLine();
+        return polished(nextLine());
     }
 
     public void clearTerm() { System.out.print("\u001b[2J\u001b[H"); }
@@ -114,6 +116,22 @@ public class IO {
      */
     public void setNextPadding(int padding) {
         nextPadding = padding;
+    }
+
+    /**
+     * IO String normalizer
+     *
+     * <p>Only 'normal' inputs are expected to be returned
+     * (trimmed + no unnecessary white spaces). So, let the IO object normalize
+     * it.</p>
+     */
+    private String polished(String input) {
+        String trimmed = input.trim();
+        String tabSplited = Stream.of(trimmed.split("\t"))
+                                .collect(Collectors.joining(" "));
+        return Stream.of(tabSplited.split(" "))
+                .filter(a -> !a.isEmpty())
+                .collect(Collectors.joining(" "));
     }
 
     /**
