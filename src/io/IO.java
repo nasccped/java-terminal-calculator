@@ -102,6 +102,8 @@ public class IO {
         return nextLine();
     }
 
+    public void clearTerm() { System.out.print("\u001b[2J\u001b[H"); }
+
     /**
      * Set an specific value to indent padding
      *
