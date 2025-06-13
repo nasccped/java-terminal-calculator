@@ -140,7 +140,7 @@ public class IO {
      * <p>This function is private. It will only be used within the object. It
      * was created to avoid code repetition</p>
      *
-     * @return nextPadding value (if it's set) or the idenPadding const
+     * @return nextPadding value (if it's set) or the identPadding const
      */
     private int getPaddingValue() {
         return nextPadding > -1 ? nextPadding : identPadding;
