@@ -19,31 +19,30 @@ public class Calculator {
     private static IO io;
 
     // store polished userInput
-    private static String userInput = null;
+    private static String userInput = "";
 
     /**
      * Calculator class 'main' function
      */
     public static void run(IO ioObject) {
         io = ioObject;
-        String[] splitedInput = new String[0];
+        String tokenString;
 
         // polished String loop testing
         do {
             io.clearTerm();
-            io.println("Current Input: "
-                       + (userInput == null ? "" : userInput));
+            io.println("Current Input: " + userInput);
             io.println();
-
-            for (String val : splitedInput) {
-                io.println(String.format("'%s' - %s",
-                                         val,
-                                         Tokenizer.tokenTypeFrom(val)));
+            for (Tokenizer.TokenType token :
+                 Tokenizer.getTokenListFromString(userInput)) {
+                tokenString = (token == Tokenizer.TokenType.INVALID_TOKEN
+                                ? "\u001b[1;91m" : "\u001b[1;92m")
+                              + token + "\u001b[0m";
+                io.println("\u001b[1;93m > " + tokenString);
             }
 
             io.println();
             userInput = io.promptedInput("Use ':quit' to abort: ");
-            splitedInput = userInput.split(" ");
         } while (!userInput.equalsIgnoreCase(":quit"));
 
     }
