@@ -79,7 +79,7 @@ public class Tokenizer {
         // if a single char (use char function)
         if (input.length() == 1) return getTokenFromChar(input.charAt(0));
         // if starts with '.' (invalid float)
-        if (input.charAt(0) == '.') return TokenType.INVALID_TOKEN;
+        if (input.startsWith(".") || input.endsWith(".")) return TokenType.INVALID_TOKEN;
         // token begins as INT
         TokenType tkn = TokenType.INT_TOKEN;
         // fore every char in our input
