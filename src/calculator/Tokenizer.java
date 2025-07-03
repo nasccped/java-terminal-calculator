@@ -75,7 +75,7 @@ public class Tokenizer {
     private static TokenType getTokenFromString(String input) {
         // handle easiest scenarios:
         // if empty
-        if (input.length() == 0) return TokenType.EMPTY_TOKEN;
+        if (input.isEmpty()) return TokenType.EMPTY_TOKEN;
         // if a single char (use char function)
         if (input.length() == 1) return getTokenFromChar(input.charAt(0));
         // if starts with '.' (invalid float)
