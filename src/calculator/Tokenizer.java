@@ -51,7 +51,7 @@ public class Tokenizer {
             case '^': return TokenType.POWER_TOKEN;
         }
         // test if in numerical range
-        if (input < '0' && input > '9') return TokenType.INVALID_TOKEN;
+        if (input < '0' || input > '9') return TokenType.INVALID_TOKEN;
         return TokenType.INT_TOKEN;
     }
 
