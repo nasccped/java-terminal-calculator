@@ -1,6 +1,8 @@
 package calculator;
 
 import io.IO;
+import calculator.inputhandler.InputNormalizer;
+import calculator.tokenizer.TokenKind;
 
 /**
  * Operation runner class
@@ -18,32 +20,23 @@ public class Calculator {
     // inner io object
     private static IO io;
 
-    // store polished userInput
-    private static String userInput = "";
-
     /**
      * Calculator class 'main' function
      */
     public static void run(IO ioObject) {
         io = ioObject;
-        String tokenString;
+        String inp = "";
 
         // polished String loop testing
         do {
             io.clearTerm();
-            io.println("Current Input: " + userInput);
+            io.println("Current Input: " + inp);
+            // io.println("Token Kind: " + );
             io.println();
-            for (Tokenizer.TokenType token :
-                 Tokenizer.getTokenListFromString(userInput)) {
-                tokenString = (token == Tokenizer.TokenType.INVALID_TOKEN
-                                ? "\u001b[1;91m" : "\u001b[1;92m")
-                              + token + "\u001b[0m";
-                io.println("\u001b[1;93m > " + tokenString);
-            }
 
             io.println();
-            userInput = io.promptedInput("Use ':quit' to abort: ");
-        } while (!userInput.equalsIgnoreCase(":quit"));
+            inp = InputNormalizer.normalize(io.promptedInput("Use ':quit' to abort: "));
+        } while (!inp.equalsIgnoreCase(":quit"));
 
     }
 }
