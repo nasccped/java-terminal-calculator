@@ -1,4 +1,4 @@
-package calculator.inputhandler;
+package calculator.evaluator.inputhandler;
 
 /**
  * Handle a single StringBuffer using a to normalize the user input
@@ -180,7 +180,7 @@ class StringBufferHandler {
                     && pivot != EMPTY_CHAR_SIGN) pushChar(' ');
         }
         // different approach for '=' signs (also invalid)
-        if (getLatest() != ' ' && c == '=') pushChar(' ');
+        if (getLatestChar() != ' ' && c == '=') pushChar(' ');
         pushChar(c);
     }
 

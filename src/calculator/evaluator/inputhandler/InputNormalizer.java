@@ -1,4 +1,4 @@
-package calculator.inputhandler;
+package calculator.evaluator.inputhandler;
 
 /**
  * Convert the user input from an unexpected format to a Token Parseable one
