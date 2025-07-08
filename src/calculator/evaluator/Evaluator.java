@@ -19,13 +19,16 @@ public class Evaluator {
     public static void setExpressionResult(String express,
                                            ExpressionResult setOn) {
         /**
-         * FIXME: This isn't the final implementation. It's just for test
-         * purposes.
+         * TODO: this is temporary (set sample values).
+         *       I need to evaluate and get the expression results to set in
+         *       the ExpressionStatus object.
          */
 
-        // fix the expression to a normalized String
-        String fixedExpression = InputNormalizer.normalize(express);
-        // WARN: this is temporary (set sample values)
-        setOn.setNewValues(fixedExpression, 9.0, ExpressionStatus.TEST_CASE, 9, 13);
+        // set
+        setOn.setExpression(InputNormalizer.normalize(express)); // expression
+        setOn.setResult(0.0); // result
+        setOn.setStatus(ExpressionStatus.TEST_CASE); // status
+        setOn.setErrorStart(-1); // err start
+        setOn.setErrorEnd(-1); // err end
     }
 }
