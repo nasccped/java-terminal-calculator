@@ -42,9 +42,9 @@ public class ExpressionResult {
 
     public String getExpression() { return expression; }
 
-    public int errorStartAt() { return errorStart; }
+    public int getErrorStart() { return errorStart; }
 
-    public int errorEndAt() { return errorEnd; }
+    public int getErrorEnd() { return errorEnd; }
 
     public ExpressionStatus getStatus() { return status; }
 
