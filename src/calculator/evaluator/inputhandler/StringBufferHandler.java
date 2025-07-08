@@ -166,10 +166,10 @@ class StringBufferHandler {
             case '^':
             case '=':
             case '*':
+            case '+':
                 pushChar(' '); // add gap
                 break;
             // if latest plus or minus
-            case '+':
             case '-':
                 // check if pivot is gap reasonable
                 if (pivot != '-'
