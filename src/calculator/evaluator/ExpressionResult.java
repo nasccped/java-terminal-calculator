@@ -42,33 +42,21 @@ public class ExpressionResult {
 
     public String getExpression() { return expression; }
 
+    protected void setExpression(String exp) { expression = exp; }
+
     public int getErrorStart() { return errorStart; }
+
+    protected void setErrorStart(int errStrt) { errorStart = errStrt; }
 
     public int getErrorEnd() { return errorEnd; }
 
+    protected void setErrorEnd(int errEnd) { errorEnd = errEnd; }
+
     public ExpressionStatus getStatus() { return status; }
+
+    protected void setStatus(ExpressionStatus stts) { status = stts; }
 
     public double getResult() { return result; }
 
-    /**
-     * Set new values to this object
-     *
-     * <p>
-     * This function is only used by the 'Evaluator' class of this same
-     * package. It explain the reason of the protected visibility. Outside
-     * classes can't change this class by his own.
-     * </p>
-     */
-    protected void setNewValues(String newExp,
-                                double newRes,
-                                ExpressionStatus newStts,
-                                int newErrorStrt,
-                                int newErrorEnd) {
-        expression = newExp;
-        result = newRes;
-        status = newStts;
-        errorStart = newErrorStrt;
-        errorEnd = newErrorEnd;
-    }
-
+    protected void setResult(double res) { result = res; }
 }
