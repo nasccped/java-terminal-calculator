@@ -37,7 +37,7 @@ public enum ExpressionStatus {
                 return "Is everythin OK with this expression";
             case WELCOME:
                 return "Welcome! You can use ':quit' to exit this program";
-            case EMPTY_EXPRESSION:
+            case ERR_EMPTY_EXPRESSION:
                 return "This is a test...";
         }
         return "FALLBACK STRING";
