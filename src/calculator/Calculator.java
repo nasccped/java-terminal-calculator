@@ -1,8 +1,9 @@
 package calculator;
 
 import io.IO;
-import calculator.inputhandler.InputNormalizer;
-import calculator.tokenizer.TokenKind;
+import calculator.evaluator.Evaluator;
+import calculator.evaluator.ExpressionResult;
+import calculator.ui.UI;
 
 /**
  * Operation runner class
@@ -25,18 +26,19 @@ public class Calculator {
      */
     public static void run(IO ioObject) {
         io = ioObject;
-        String inp = "";
+        // create input and expression result as default
+        String input = "";
+        ExpressionResult expRes = new ExpressionResult();
 
-        // polished String loop testing
-        do {
+        // while not quit
+        while (!input.equalsIgnoreCase(":quit")) {
+            // clear terminal + print panel
             io.clearTerm();
-            io.println("Current Input: " + inp);
-            // io.println("Token Kind: " + );
+            UI.printPannel(io, expRes);
             io.println();
-
-            io.println();
-            inp = InputNormalizer.normalize(io.promptedInput("Use ':quit' to abort: "));
-        } while (!inp.equalsIgnoreCase(":quit"));
-
+            // take expression + set new values
+            input = io.promptedInput("> ");
+            Evaluator.setExpressionResult(input, expRes);
+        }
     }
 }
