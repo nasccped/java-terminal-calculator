@@ -29,29 +29,27 @@ public class InputNormalizer {
         // prepare strBuf instance
         StringBufferHandler.prepareInstance();
         // foreach char
-        for (char c : input.toCharArray()) {
-            switch (c) {
-                // if is space
-                case ' ':
-                    StringBufferHandler.handleSpacePushing();
-                    break;
-                // if is parenthesis
-                case '(':
-                case ')':
-                    StringBufferHandler.handleParenPushing(c);
-                    break;
-                // if is operator
-                case '+':
-                case '-':
-                case '/':
-                case '*':
-                case '^':
-                    StringBufferHandler.handleOperPushing(c);
-                    break;
-                // else
-                default:
-                    StringBufferHandler.handleOtherPushing(c);
-            }
+        for (char c : input.toCharArray()) switch (c) {
+            // if is space
+            case ' ':
+                StringBufferHandler.handleSpacePushing();
+                break;
+            // if is parenthesis
+            case '(':
+            case ')':
+                StringBufferHandler.handleParenPushing(c);
+                break;
+            // if is operator
+            case '+':
+            case '-':
+            case '/':
+            case '*':
+            case '^':
+                StringBufferHandler.handleOperPushing(c);
+                break;
+            // else
+            default:
+                StringBufferHandler.handleOtherPushing(c);
         }
         // return the final object as String
         return StringBufferHandler.getBufferAsString();
@@ -64,25 +62,23 @@ public class InputNormalizer {
     public static List<String> normalizedToList(String input) {
         LinkedList<String> list = new LinkedList<>();
         StringBuffer buffer = new StringBuffer();
-        for (char c : input.toCharArray()) {
-            switch (c) {
-                case ' ':
-                    list.add(buffer.toString());
-                    buffer.setLength(0);
-                    break;
-                case '+':
-                case '/':
-                case '*':
-                case '^':
-                case '(':
-                case ')':
-                    list.add(buffer.toString());
-                    list.add(String.format("%c", c));
-                    buffer.setLength(0);
-                    break;
-                default:
-                    buffer.append(c);
-            }
+        for (char c : input.toCharArray()) switch (c) {
+            case ' ':
+                list.add(buffer.toString());
+                buffer.setLength(0);
+                break;
+            case '+':
+            case '/':
+            case '*':
+            case '^':
+            case '(':
+            case ')':
+                list.add(buffer.toString());
+                list.add(String.format("%c", c));
+                buffer.setLength(0);
+                break;
+            default:
+                buffer.append(c);
         }
         if (!buffer.isEmpty()) list.add(buffer.toString());
         return list.stream()
