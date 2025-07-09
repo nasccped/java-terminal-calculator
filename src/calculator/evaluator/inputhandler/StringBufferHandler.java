@@ -211,15 +211,11 @@ class StringBufferHandler {
     private static char reverseCharLookup() {
         boolean stopOnNext = false;
         // gradually decrease the buffer index
-        for (int ind = getLength() - 1; ind >= 0; ind--) {
+        for (int ind = getLength() - 1; ind >= 0; ind--)
             // if space found, enable stop and continue
-            if (getCharAt(ind) == ' ') {
-                stopOnNext = true;
-                continue;
-            }
+            if (getCharAt(ind) == ' ') stopOnNext = true;
             // return only when stop is enabled
-            if (stopOnNext) return getCharAt(ind);
-        }
+            else if (stopOnNext) return getCharAt(ind);
         // if outside loop (ind goes out of scope (-1))
         return EMPTY_CHAR_SIGN;
     }
