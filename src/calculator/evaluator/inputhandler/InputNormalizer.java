@@ -1,12 +1,20 @@
 package calculator.evaluator.inputhandler;
 
+import java.util.List;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+
 /**
- * Convert the user input from an unexpected format to a Token Parseable one
+ * Convert inputs to an easy-read format (String -> better String, better
+ * String -> List<String>)
  *
  * <p>
- * All the job is done using the StringBufferHandler class and it's static
- * methods/attributes. This class will only slice the input into chars and
- * handle the char kind insertion (space, parenthesis, operator, other).
+ * The StringBufferHandler works only with the 'normalize' function. This one
+ * is basically char pushing handling.
+ *
+ * The 'normalizedToList' function is targeted to already normalized String. It
+ * can turn char sequence in separeted Token-parseable char sequences:
+ * "31 - (21 * 32.3)" -> ["31", "-", "(", "21", "*", "32.3", ")"].
  * </p>
  */
 public class InputNormalizer {
@@ -47,5 +55,38 @@ public class InputNormalizer {
         }
         // return the final object as String
         return StringBufferHandler.getBufferAsString();
+    }
+
+    /**
+     * Convert a normalized input (String) to an easy-read token sequence
+     * (String List)
+     */
+    public static List<String> normalizedToList(String input) {
+        LinkedList<String> list = new LinkedList<>();
+        StringBuffer buffer = new StringBuffer();
+        for (char c : input.toCharArray()) {
+            switch (c) {
+                case ' ':
+                    list.add(buffer.toString());
+                    buffer.setLength(0);
+                    break;
+                case '+':
+                case '/':
+                case '*':
+                case '^':
+                case '(':
+                case ')':
+                    list.add(buffer.toString());
+                    list.add(String.format("%c", c));
+                    buffer.setLength(0);
+                    break;
+                default:
+                    buffer.append(c);
+            }
+        }
+        if (!buffer.isEmpty()) list.add(buffer.toString());
+        return list.stream()
+            .filter(element -> !element.isEmpty())
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 }
