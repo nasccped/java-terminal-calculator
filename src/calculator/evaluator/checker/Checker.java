@@ -1,4 +1,4 @@
-package calculator.evaluator.parser;
+package calculator.evaluator.checker;
 
 import calculator.evaluator.tokenizer.Token;
 import calculator.evaluator.tokenizer.TokenKind;
@@ -6,7 +6,7 @@ import calculator.evaluator.tokenizer.TokenKind;
 /**
  * Preparatory checks for normalized input (paren count, token precedence, ...)
  */
-public class PreparatoryChecker {
+public class Checker {
 
     private static TokenKind errorKind;
     private static int errorStart;
