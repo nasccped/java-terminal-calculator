@@ -70,9 +70,9 @@ public class InputNormalizer {
         for (int i = 0; i < input.length(); i++) switch (input.charAt(i)) {
             case ' ':
                 savedStr = buffer.toString();
-                list.add(new Token(TokenKind.from(savedStr), savedStr, i));
+                list.add(new Token(TokenKind.from(savedStr), savedStr, savedIndex));
                 buffer.setLength(0);
-                savedIndex = i;
+                savedIndex = i + 1;
                 break;
             case '+':
             case '/':
@@ -82,12 +82,12 @@ public class InputNormalizer {
             case ')':
                 savedStr = buffer.toString();
                 list.add(new Token(TokenKind.from(savedStr),
-                                                  savedStr, i));
+                                                  savedStr, savedIndex));
                 savedStr = String.format("%c", input.charAt(i));
                 list.add(new Token(TokenKind.from(String.format("%c", input.charAt(i))),
                                                   savedStr, i));
                 buffer.setLength(0);
-                savedIndex = i;
+                savedIndex = i + 1;
                 break;
             default:
                 buffer.append(input.charAt(i));
