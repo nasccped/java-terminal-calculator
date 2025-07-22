@@ -44,5 +44,7 @@ public class Token {
     }
 
     @Override
-    public String toString() { return kind + valueUnwrapper(); }
+    public String toString() {
+        return String.format("[%d, %s]", startInd, kind + valueUnwrapper());
+    }
 }
