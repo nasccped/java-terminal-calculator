@@ -138,6 +138,11 @@ class StringBufferHandler {
         pivot = reverseCharLookup();
         // switch on latest char
         switch (getLatestChar()) {
+            case '/':
+            case '*':
+            case '^':
+                pushChar(' ');
+                break;
             // case plus or minus sign
             case '+':
             case '-':
