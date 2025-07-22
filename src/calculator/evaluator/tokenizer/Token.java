@@ -9,17 +9,28 @@ package calculator.evaluator.tokenizer;
  * </p>
  */
 public class Token {
-    private final TokenKind token;
-    private final String value;
 
-    public Token(TokenKind token, String value) {
-        this.token = token;
+    private final TokenKind kind;
+    private final String value;
+    private final int startInd;
+    private final int endInd;
+
+    public Token(TokenKind token, String value, int startIndex) {
+        this.kind = token;
         this.value = value;
+        this.startInd = startIndex;
+        this.endInd = startIndex + value.length();
     }
 
-    public TokenKind getKind() { return token; }
+    public boolean isEmpty() { return kind == TokenKind.EMPTY_TOKEN; }
+
+    public TokenKind getKind() { return kind; }
 
     public String getValue() { return value; }
+
+    public int getStartInd() { return startInd; }
+
+    public int getEndInd() { return endInd; }
 
     /**
      * Unwrap the value String when calling 'toString'
@@ -33,5 +44,5 @@ public class Token {
     }
 
     @Override
-    public String toString() { return token + valueUnwrapper(); }
+    public String toString() { return kind + valueUnwrapper(); }
 }
