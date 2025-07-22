@@ -1,5 +1,8 @@
 package calculator.evaluator.inputhandler;
 
+import calculator.evaluator.tokenizer.Token;
+import calculator.evaluator.tokenizer.TokenKind;
+
 import java.util.List;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -59,13 +62,17 @@ public class InputNormalizer {
      * Convert a normalized input (String) to an easy-read token sequence
      * (String List)
      */
-    public static List<String> normalizedToList(String input) {
-        LinkedList<String> list = new LinkedList<>();
+    public static List<Token> strToTokenList(String input) {
+        LinkedList<Token> list = new LinkedList<>();
         StringBuffer buffer = new StringBuffer();
-        for (char c : input.toCharArray()) switch (c) {
+        int savedIndex = 0;
+        String savedStr;
+        for (int i = 0; i < input.length(); i++) switch (input.charAt(i)) {
             case ' ':
-                list.add(buffer.toString());
+                savedStr = buffer.toString();
+                list.add(new Token(TokenKind.from(savedStr), savedStr, i));
                 buffer.setLength(0);
+                savedIndex = i;
                 break;
             case '+':
             case '/':
@@ -73,16 +80,23 @@ public class InputNormalizer {
             case '^':
             case '(':
             case ')':
-                list.add(buffer.toString());
-                list.add(String.format("%c", c));
+                savedStr = buffer.toString();
+                list.add(new Token(TokenKind.from(savedStr),
+                                                  savedStr, i));
+                savedStr = String.format("%c", input.charAt(i));
+                list.add(new Token(TokenKind.from(String.format("%c", input.charAt(i))),
+                                                  savedStr, i));
                 buffer.setLength(0);
+                savedIndex = i;
                 break;
             default:
-                buffer.append(c);
+                buffer.append(input.charAt(i));
         }
-        if (!buffer.isEmpty()) list.add(buffer.toString());
+        if (!buffer.isEmpty()) list.add(new Token(TokenKind.from(buffer.toString()),
+                                                  buffer.toString(),
+                                                  savedIndex));
         return list.stream()
             .filter(element -> !element.isEmpty())
-            .collect(Collectors.toCollection(LinkedList::new));
+            .collect(Collectors.toList());
     }
 }
