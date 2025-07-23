@@ -24,7 +24,7 @@ public class Checker {
             .filter(Token::isInvalid)
             .findFirst();
         if (invalid.isPresent()) {
-            setIndexes(setOn, invalid.get().getIndexRange());
+            setOn.setErrorRange(invalid.get().getIndexRange());
             return true;
         }
         return false;
@@ -65,14 +65,9 @@ public class Checker {
             if (parenCount == 1 && isIncreasing) range[0] = tk.getStartInd();
         }
         if (parenCount != 0) {
-            setIndexes(setOn, range);
+            setOn.setErrorRange(range);
             return true;
         }
         return false;
-    }
-
-    private static void setIndexes(ExpressionResult setOn, int[] range) {
-        setOn.setErrorStart(range[0]);
-        setOn.setErrorEnd(range[1]);
     }
 }

@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class Evaluator {
 
+    private static final int[] defaultErrorRange = {-1, -1};
+
     /**
      * Take the user input, evaluate and apply the final result into an extern
      * objects (ExpressionResult - from this same package).
@@ -30,8 +32,7 @@ public class Evaluator {
         setOn.setStatus(ExpressionStatus.OK);
         setOn.setExpression(normalized);
         setOn.setResult(0.0);
-        setOn.setErrorStart(-1);
-        setOn.setErrorEnd(-1);
+        setOn.setErrorRange(defaultErrorRange);
 
         List<Token> tkList = InputNormalizer.strToTokenList(normalized);
 
@@ -44,10 +45,5 @@ public class Evaluator {
             return;
         }
         // others tests needed
-    }
-
-    private static void setErrorIndexes(ExpressionResult setOn, int[] values) {
-            setOn.setErrorStart(values[0]);
-            setOn.setErrorEnd(values[1]);
     }
 }

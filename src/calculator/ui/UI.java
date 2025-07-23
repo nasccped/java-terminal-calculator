@@ -31,13 +31,11 @@ public class UI {
      */
     public static void printPannel(IO io, ExpressionResult result) {
         // get error indexes
-        int errStart = result.getErrorStart(),
-            errEnd = result.getErrorEnd();
+        int[] errorRange = result.getErrorRange();
         // get expression, underscores and status output
         String expressionRow = getExpressionRow(result.getExpression(),
-                                                errStart,
-                                                errEnd);
-        String underscoreRow = getUnderscoreRow(errStart, errEnd);
+                                                errorRange);
+        String underscoreRow = getUnderscoreRow(errorRange);
         String statusRow = getStatusRow(result.getStatus(),
                                         result.getResult());
         // print them
@@ -51,18 +49,15 @@ public class UI {
     /**
      * If the error mark should be ignored
      */
-    private static boolean avoidErrorMark(int errStart, int errEnd) {
-        return (errStart < 0 || errEnd <= errStart);
+    private static boolean avoidErrorMark(int[] errorRange) {
+        return (errorRange[0] < 0 || errorRange[1] <= errorRange[0]);
     }
 
     private static String getExpressionRow(String expression,
-                                           int errStart,
-                                           int errEnd) {
+                                           int[] errorRange) {
         return String.format("%sExpression: %s%s",
                              WHITE,
-                             paintExpression(expression,
-                                             errStart,
-                                             errEnd),
+                             paintExpression(expression, errorRange),
                              RESET);
     }
 
@@ -70,18 +65,14 @@ public class UI {
      * Paints the given expression by it's error range
      */
     private static String paintExpression(String expression,
-                                          int errorStart,
-                                          int errorEnd) {
-        // if not necessary
-        if (avoidErrorMark(errorStart, errorEnd)) return expression;
-        // else:
-        // create the buffer
+                                          int[] errorRange) {
+        if (avoidErrorMark(errorRange)) return expression;
+
         StringBuffer buffer = new StringBuffer(expression);
         // insert end first (NO STRLEN CONFLICTING),
-        buffer.insert(errorEnd, WHITE);
+        buffer.insert(errorRange[1], WHITE);
         // insert start (red escape)
-        buffer.insert(errorStart, RED);
-        // return as String
+        buffer.insert(errorRange[0], RED);
         return buffer.toString();
     }
 
@@ -89,12 +80,13 @@ public class UI {
      * Gets the expression underscore mark that points to the error
      * (like rust compiler :^D)
      */
-    private static String getUnderscoreRow(int errStart, int errEnd) {
-        if (avoidErrorMark(errStart, errEnd)) return "";
+    private static String getUnderscoreRow(int[] errorRange) {
+        if (avoidErrorMark(errorRange)) return "";
+
         StringBuffer buffer = new StringBuffer("            ");
         buffer.append(RED);
-        buffer.append("-".repeat(errStart));
-        buffer.append("^".repeat(errEnd - errStart));
+        buffer.append("-".repeat(errorRange[0]));
+        buffer.append("^".repeat(errorRange[1] - errorRange[0]));
         buffer.append(RESET);
         return buffer.toString();
     }
@@ -104,15 +96,12 @@ public class UI {
      */
     private static String getStatusRow(ExpressionStatus status,
                                        double valueResult) {
-        // if status is OK
         return status.isOk()
             ? String.format("%sstts[ %sOK%s ]: %f%s", WHITE, GREEN, WHITE,
                             valueResult, RESET)
-            // but, if status is welcome
             : status.isWelcome()
                 ? String.format("%sstts[%sNOTE%s]: %s%s", WHITE, BLUE, WHITE,
                                 status.unwrapMessage(), RESET)
-                // else:
                 : String.format("%sstts[%sFAIL%s]: %s%s", WHITE, RED, WHITE,
                                 status.unwrapMessage(), RESET);
     }
