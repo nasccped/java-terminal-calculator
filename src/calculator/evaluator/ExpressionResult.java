@@ -19,8 +19,7 @@ public class ExpressionResult {
     private ExpressionStatus status;
 
     // error occurs between (start..end) (both -1 if no error)
-    private int errorStart;
-    private int errorEnd;
+    private int[] errorRange;
 
     /**
      * Generate a ExpressionResult with its default values
@@ -36,21 +35,21 @@ public class ExpressionResult {
         this.expression = "";
         this.result = 0.0;
         this.status = ExpressionStatus.WELCOME;
-        this.errorStart = -1;
-        this.errorEnd = -1;
+        this.errorRange = new int[2];
+        this.errorRange[0] = -1;
+        this.errorRange[1] = -1;
     }
 
     public String getExpression() { return expression; }
 
     protected void setExpression(String exp) { expression = exp; }
 
-    public int getErrorStart() { return errorStart; }
+    public int[] getErrorRange() { return errorRange; }
 
-    public void setErrorStart(int errStrt) { errorStart = errStrt; }
-
-    public int getErrorEnd() { return errorEnd; }
-
-    public void setErrorEnd(int errEnd) { errorEnd = errEnd; }
+    public void setErrorRange(int[] newIdxs) {
+        errorRange[0] = newIdxs[0];
+        errorRange[1] = newIdxs[1];
+    }
 
     public ExpressionStatus getStatus() { return status; }
 
