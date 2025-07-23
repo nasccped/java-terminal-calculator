@@ -156,6 +156,8 @@ class StringBufferHandler {
                 // turn this "... + 23 )" into this "... + 23)"
                 if (paren == ')') removeCharAt(getLength() - 1);
                 break;
+            default:
+                if (paren == '(') pushChar(' ');
         }
         // push the paren
         pushChar(paren);
