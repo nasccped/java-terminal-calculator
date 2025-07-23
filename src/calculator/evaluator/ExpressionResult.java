@@ -46,11 +46,11 @@ public class ExpressionResult {
 
     public int getErrorStart() { return errorStart; }
 
-    protected void setErrorStart(int errStrt) { errorStart = errStrt; }
+    public void setErrorStart(int errStrt) { errorStart = errStrt; }
 
     public int getErrorEnd() { return errorEnd; }
 
-    protected void setErrorEnd(int errEnd) { errorEnd = errEnd; }
+    public void setErrorEnd(int errEnd) { errorEnd = errEnd; }
 
     public ExpressionStatus getStatus() { return status; }
 
