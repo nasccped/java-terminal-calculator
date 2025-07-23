@@ -34,18 +34,12 @@ public class Evaluator {
         setOn.setErrorEnd(-1);
 
         List<Token> tkList = InputNormalizer.strToTokenList(normalized);
-        int[] errInds;
-        // test tokens
-        errInds = Checker.invalidToken(tkList);
-        if (errInds.length > 0) {
-            setErrorIndexes(setOn, errInds);
+
+        if (Checker.invalidToken(tkList, setOn)) {
             setOn.setStatus(ExpressionStatus.ERR_INVALID_TOKEN);
             return;
         }
-        // test parenthesis
-        errInds = Checker.invalidParenthesis(tkList);
-        if (errInds.length > 0) {
-            setErrorIndexes(setOn, errInds);
+        if (Checker.invalidParenthesis(tkList, setOn)) {
             setOn.setStatus(ExpressionStatus.ERR_MISSING_PAREN);
             return;
         }

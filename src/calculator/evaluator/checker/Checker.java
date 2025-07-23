@@ -2,9 +2,11 @@ package calculator.evaluator.checker;
 
 import calculator.evaluator.tokenizer.Token;
 import calculator.evaluator.tokenizer.TokenKind;
+import calculator.evaluator.ExpressionResult;
 
 import java.util.stream.Collectors;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -16,26 +18,31 @@ public class Checker {
      * Get indexes of the firs ivalid token in a given list, else return empty
      * array
      */
-    public static int[] invalidToken(List<Token> input) {
-        return input
+    public static boolean invalidToken(List<Token> input, ExpressionResult setOn) {
+        Optional<Token> invalid = input
             .stream()
             .filter(Token::isInvalid)
-            .findFirst()
-            .map(Token::getIndexRange)
-            .orElse(new int[0]);
+            .findFirst();
+        if (invalid.isPresent()) {
+            setIndexes(setOn, invalid.get().getIndexRange());
+            return true;
+        }
+        return false;
     }
 
     /**
      * Get indexes of invalid parenthesis group
      */
-    public static int[] invalidParenthesis(List<Token> input) {
-        List<Token> parens =input
-                .stream()
-                .filter(v ->
-                    v.getKind() == TokenKind.OPN_PAREN
-                    || v.getKind() == TokenKind.CLS_PAREN)
-                .collect(Collectors.toList());
-        if (parens.isEmpty()) return new int[0];
+    public static boolean invalidParenthesis(List<Token> input, ExpressionResult setOn) {
+        List<Token> parens = input
+            .stream()
+            .filter(v ->
+                v.getKind() == TokenKind.OPN_PAREN
+                || v.getKind() == TokenKind.CLS_PAREN
+            ).collect(Collectors.toList());
+
+        if (parens.isEmpty()) return false;
+
         int parenCount = 0;
         int[] range = {
             0, parens.get(parens.size() - 1).getEndInd()
@@ -45,8 +52,7 @@ public class Checker {
             if (tk.getKind() == TokenKind.OPN_PAREN) {
                 parenCount++;
                 isIncreasing = true;
-            }
-            else {
+            } else {
                 parenCount--;
                 isIncreasing = false;
             }
@@ -58,6 +64,15 @@ public class Checker {
             }
             if (parenCount == 1 && isIncreasing) range[0] = tk.getStartInd();
         }
-        return parenCount == 0 ? new int[0] : range;
+        if (parenCount != 0) {
+            setIndexes(setOn, range);
+            return true;
+        }
+        return false;
+    }
+
+    private static void setIndexes(ExpressionResult setOn, int[] range) {
+        setOn.setErrorStart(range[0]);
+        setOn.setErrorEnd(range[1]);
     }
 }
