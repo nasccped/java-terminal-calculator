@@ -24,6 +24,11 @@ public class Token {
 
     public boolean isEmpty() { return kind == TokenKind.EMPTY_TOKEN; }
 
+    public boolean isInvalid() {
+        return kind == TokenKind.EMPTY_TOKEN
+            || kind == TokenKind.INVALID_TOKEN;
+    }
+
     public TokenKind getKind() { return kind; }
 
     public String getValue() { return value; }
@@ -31,6 +36,13 @@ public class Token {
     public int getStartInd() { return startInd; }
 
     public int getEndInd() { return endInd; }
+
+    public int[] getIndexRange() {
+        int[] result = new int[2];
+        result[0] = startInd;
+        result[1] = startInd + value.length();
+        return result;
+    }
 
     /**
      * Unwrap the value String when calling 'toString'
