@@ -23,23 +23,22 @@ package calculator.evaluator;
  * </p>
  */
 public enum ExpressionStatus {
-    OK,
-    WELCOME,
     ERR_EMPTY_EXPRESSION,
-    TEST_CASE;
+    ERR_MISSING_PAREN,
+    ERR_INVALID_TOKEN,
+    OK,
+    WELCOME;
 
     public boolean isOk() { return this == OK; }
     public boolean isWelcome() { return this == WELCOME; }
 
     public String unwrapMessage() {
-        switch (this) {
-            case OK:
-                return "Is everythin OK with this expression";
-            case WELCOME:
-                return "Welcome! You can use ':quit' to exit this program";
-            case ERR_EMPTY_EXPRESSION:
-                return "This is a test...";
-        }
-        return "FALLBACK STRING";
+        return
+            this == ERR_EMPTY_EXPRESSION  ? "Empty expression" :
+            this == ERR_INVALID_TOKEN     ? "Invalid token (non numeric/operator)" :
+            this == ERR_MISSING_PAREN     ? "Open/Close parenthesis is missing" :
+            this == OK                    ? "Is everythin OK with this expression" :
+            this == WELCOME               ? "Welcome! You can use ':quit' to exit this program" :
+            "FALLBACK String (unexpected behavior - I must fix it!)";
     }
 }
