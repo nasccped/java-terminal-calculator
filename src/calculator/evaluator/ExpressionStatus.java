@@ -26,6 +26,7 @@ public enum ExpressionStatus {
     ERR_EMPTY_EXPRESSION,
     ERR_MISSING_PAREN,
     ERR_INVALID_TOKEN,
+    ERR_OPER_AT_SIDES,
     OK,
     WELCOME;
 
@@ -37,6 +38,7 @@ public enum ExpressionStatus {
             this == ERR_EMPTY_EXPRESSION  ? "Empty expression" :
             this == ERR_INVALID_TOKEN     ? "Invalid token (non numeric/operator)" :
             this == ERR_MISSING_PAREN     ? "Open/Close parenthesis is missing" :
+            this == ERR_OPER_AT_SIDES     ? "Expr. can't start or end with operator (only '+' and '-')" :
             this == OK                    ? "Is everythin OK with this expression" :
             this == WELCOME               ? "Welcome! You can use ':quit' to exit this program" :
             "FALLBACK String (unexpected behavior - I must fix it!)";

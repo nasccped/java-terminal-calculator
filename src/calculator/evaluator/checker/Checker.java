@@ -70,4 +70,50 @@ public class Checker {
         }
         return false;
     }
+
+    public static boolean invalidOperPos(List<Token> input, ExpressionResult setOn) {
+        if (input.isEmpty()) return false;
+
+        int[] range = new int[2];
+        Token tk = input.get(input.size() - 1);
+
+        switch (tk.getKind()) {
+            case ADD_SIGN:
+            case SUB_SIGN:
+            case DIV_SIGN:
+            case MUL_SIGN:
+            case POW_SIGN:
+                range[0] = tk.getStartInd();
+                range[1] = tk.getEndInd();
+                setOn.setErrorRange(range);
+                return true;
+        }
+
+        tk = input.get(0);
+
+        switch (tk.getKind()) {
+            case POW_SIGN:
+            case DIV_SIGN:
+            case MUL_SIGN:
+                range[0] = tk.getStartInd();
+                range[1] = tk.getEndInd();
+                setOn.setErrorRange(range);
+                return true;
+            case ADD_SIGN:
+            case SUB_SIGN:
+                if (input.size() == 1) {
+                    range[0] = tk.getStartInd();
+                    range[1] = tk.getEndInd();
+                    setOn.setErrorRange(range);
+                    return true;
+                }
+                if (input.get(1).getKind() != TokenKind.OPN_PAREN) {
+                    range[0] = tk.getStartInd();
+                    range[1] = tk.getEndInd();
+                    setOn.setErrorRange(range);
+                    return true;
+                }
+        }
+        return false;
+    }
 }
