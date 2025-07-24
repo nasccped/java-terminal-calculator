@@ -1,4 +1,4 @@
-package calculator.evaluator;
+package calculator.evaluator.expression;
 
 /**
  * Store all the expression output data (expression itself, the result, the

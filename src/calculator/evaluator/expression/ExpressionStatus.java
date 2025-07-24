@@ -1,4 +1,4 @@
-package calculator.evaluator;
+package calculator.evaluator.expression;
 
 /**
  * Stores the status of the given expression:
