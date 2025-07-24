@@ -1,8 +1,8 @@
 package calculator.ui;
 
 import io.IO;
-import calculator.evaluator.ExpressionStatus;
-import calculator.evaluator.ExpressionResult;
+import calculator.evaluator.expression.ExpressionStatus;
+import calculator.evaluator.expression.ExpressionResult;
 
 /**
  * Panel printing class

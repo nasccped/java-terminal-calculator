@@ -2,7 +2,7 @@ package calculator.evaluator.checker;
 
 import calculator.evaluator.tokenizer.Token;
 import calculator.evaluator.tokenizer.TokenKind;
-import calculator.evaluator.ExpressionResult;
+import calculator.evaluator.expression.ExpressionResult;
 
 import java.util.stream.Collectors;
 import java.util.List;

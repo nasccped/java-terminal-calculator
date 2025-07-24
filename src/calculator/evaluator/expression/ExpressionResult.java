@@ -42,7 +42,7 @@ public class ExpressionResult {
 
     public String getExpression() { return expression; }
 
-    protected void setExpression(String exp) { expression = exp; }
+    public void setExpression(String exp) { expression = exp; }
 
     public int[] getErrorRange() { return errorRange; }
 
@@ -53,9 +53,9 @@ public class ExpressionResult {
 
     public ExpressionStatus getStatus() { return status; }
 
-    protected void setStatus(ExpressionStatus stts) { status = stts; }
+    public void setStatus(ExpressionStatus stts) { status = stts; }
 
     public double getResult() { return result; }
 
-    protected void setResult(double res) { result = res; }
+    public void setResult(double res) { result = res; }
 }

@@ -3,6 +3,8 @@ package calculator.evaluator;
 import calculator.evaluator.inputhandler.InputNormalizer;
 import calculator.evaluator.checker.Checker;
 import calculator.evaluator.tokenizer.Token;
+import calculator.evaluator.expression.ExpressionResult;
+import calculator.evaluator.expression.ExpressionStatus;
 import java.util.List;
 
 /**

@@ -2,7 +2,7 @@ package calculator;
 
 import io.IO;
 import calculator.evaluator.Evaluator;
-import calculator.evaluator.ExpressionResult;
+import calculator.evaluator.expression.ExpressionResult;
 import calculator.ui.UI;
 
 /**
