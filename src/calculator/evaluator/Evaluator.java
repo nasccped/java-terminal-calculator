@@ -44,6 +44,10 @@ public class Evaluator {
             setOn.setStatus(ExpressionStatus.ERR_MISSING_PAREN);
             return;
         }
+        if (Checker.tokenProbablyMissing(tkList, setOn)) {
+            setOn.setStatus(ExpressionStatus.ERR_MISSING_TOKEN);
+            return;
+        }
         if (Checker.invalidOperPos(tkList, setOn)) {
             setOn.setStatus(ExpressionStatus.ERR_OPER_AT_SIDES);
             return;
