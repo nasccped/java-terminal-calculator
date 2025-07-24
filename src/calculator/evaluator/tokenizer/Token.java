@@ -29,6 +29,19 @@ public class Token {
             || kind == TokenKind.INVALID_TOKEN;
     }
 
+    public boolean isOper() {
+        switch (kind) {
+            case ADD_SIGN:
+            case SUB_SIGN:
+            case DIV_SIGN:
+            case MUL_SIGN:
+            case POW_SIGN:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     public TokenKind getKind() { return kind; }
 
     public String getValue() { return value; }
@@ -42,6 +55,17 @@ public class Token {
         result[0] = startInd;
         result[1] = startInd + value.length();
         return result;
+    }
+
+    public boolean isNumeric() {
+        switch (kind) {
+            case POS_INT:
+            case NEG_INT:
+            case POS_FLOAT:
+            case NEG_FLOAT:
+                return true;
+            default: return false;
+        }
     }
 
     /**
