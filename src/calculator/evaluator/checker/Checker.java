@@ -116,4 +116,42 @@ public class Checker {
         }
         return false;
     }
+
+    public static boolean tokenProbablyMissing(List<Token> input, ExpressionResult setOn) {
+        if (input.size() < 2) return false;
+        Token curr, prev;
+        int[] range = new int[2];
+        boolean isErr = false;
+        for (int i = 1; i < input.size(); i++) {
+            curr = input.get(i);
+            prev = input.get(i - 1);
+            // number followed by open parenthesis
+            if (
+                prev.isNumeric()
+                && curr.getKind() == TokenKind.OPN_PAREN) isErr = true;
+            // operator followed by close parenthesis
+            else if (
+                prev.isOper()
+                && curr.getKind() == TokenKind.CLS_PAREN) isErr = true;
+            // open parenthesis followed by close parenthesis (empty parenthesis)
+            else if (
+                prev.getKind() == TokenKind.OPN_PAREN
+                && curr.getKind() == TokenKind.CLS_PAREN) isErr = true;
+            // number followed by a number
+            else if (
+                prev.isNumeric() && curr.isNumeric()) isErr = true;
+            // operator followed by an operator
+            else if (
+                curr.isOper() && prev.isOper()) isErr = true;
+
+            // if any of the conditions above
+            if (isErr) {
+                range[0] = prev.getIndexRange()[0];
+                range[1] = curr.getIndexRange()[1];
+                setOn.setErrorRange(range);
+                return true;
+            }
+        }
+        return false;
+    }
 }
