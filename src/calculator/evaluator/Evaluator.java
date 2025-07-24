@@ -40,7 +40,7 @@ public class Evaluator {
             setOn.setStatus(ExpressionStatus.ERR_INVALID_TOKEN);
             return;
         }
-        if (Checker.invalidParenthesis(tkList, setOn)) {
+        if (Checker.missingParenthesis(tkList, setOn)) {
             setOn.setStatus(ExpressionStatus.ERR_MISSING_PAREN);
             return;
         }

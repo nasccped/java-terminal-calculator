@@ -33,7 +33,7 @@ public class Checker {
     /**
      * Get indexes of invalid parenthesis group
      */
-    public static boolean invalidParenthesis(List<Token> input, ExpressionResult setOn) {
+    public static boolean missingParenthesis(List<Token> input, ExpressionResult setOn) {
         List<Token> parens = input
             .stream()
             .filter(v ->
