@@ -36,6 +36,10 @@ public class Evaluator {
 
         List<Token> tkList = InputNormalizer.strToTokenList(normalized);
 
+        if (tkList.isEmpty()) {
+            setOn.setStatus(ExpressionStatus.ERR_EMPTY_EXPRESSION);
+            return;
+        }
         if (Checker.invalidToken(tkList, setOn)) {
             setOn.setStatus(ExpressionStatus.ERR_INVALID_TOKEN);
             return;
