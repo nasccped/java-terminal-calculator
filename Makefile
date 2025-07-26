@@ -1,13 +1,32 @@
-CMD = kojamp
+CMD=kojamp
+OUT_DIR=out
+OUT_FILE=$(OUT_DIR)/JavaTermCalc.class
+
+a: all
+
+all:
+	@echo "Commands:"
+	@echo "  [a]ll (prints this screen)"
+	@echo "  [b]uild"
+	@echo "  [c]lean"
+	@echo "  [r]un"
+
+b: build
+r: run
+c: clean
 
 build:
-	$(CMD) build
+	@echo "$(CMD) build"
+	@$(CMD) build >/dev/null && echo "Ok"
 
-run:
+run: $(OUT_FILE)
 	$(CMD) run
 
-# fast run
-fr:
-	$(CMD) build && $(CMD) run
+$(OUT_FILE):
+	@echo "$(CMD) build"
+	@$(CMD) build >/dev/null && echo "OK"
 
-.PHONY: fr run build
+clean: $(OUT_DIR)
+	rm -rf $<
+
+.PHONY: a all b build c clean r run
