@@ -11,14 +11,9 @@ package calculator.evaluator.expression;
  */
 public class ExpressionResult {
 
-    // expression input (post-normalize)
     private String expression;
-    // result of the evaluated expression
     private double result;
-    // status of the given expression ( OK | ERR_<ERROR_TYPE> )
     private ExpressionStatus status;
-
-    // error occurs between (start..end) (both -1 if no error)
     private int[] errorRange;
 
     /**
