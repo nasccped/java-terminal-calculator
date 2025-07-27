@@ -47,22 +47,15 @@ public enum TokenKind {
         TokenKind token = POS_INT;
         for (int i = 0; i < seq.length; i++) switch (seq[i]) {
             case '.':
-                // if dot is first/last char
                 if (i == 0 || i == seq.length - 1) return INVALID_TOKEN;
-                // if token not integer (already float = double dot input)
                 if (token != POS_INT && token != NEG_INT) return INVALID_TOKEN;
-                // update token with ternary
                 token = token == POS_INT ? POS_FLOAT : NEG_FLOAT;
                 break;
             case '-':
-                // if '-' not in beginning
                 if (i > 0) return INVALID_TOKEN;
-                // update token
                 token = NEG_INT;
                 break;
-            // othercase
             default:
-                // if not digit
                 if (seq[i] < '0' || seq[i] > '9') return INVALID_TOKEN;
         }
         return token;
