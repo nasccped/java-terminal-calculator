@@ -50,110 +50,65 @@ package calculator.evaluator.inputhandler;
  */
 class StringBufferHandler {
 
-    /**
-     * Representation of an empty char
-     *
-     * <p>
-     * This value is used to represent the latest/pivot char when the
-     * StringBuffer is empty. It's a good approach because unlike C, taking a
-     * String input from the Command Line will just return a String with no
-     * '\0' terminator (even if passing this literal value).
-     * </p>
-     */
+    // used to represent an empty char when trying to get previous one or doing
+    // lookup
     private static final char EMPTY_CHAR_SIGN = '\0';
-
-    /**
-     * Our singleton inner object
-     *
-     * <p>
-     * It will store our String data, and then, return the final data as
-     * String.
-     * </p>
-     */
     private static StringBuffer strBuf;
-
-    /**
-     * Stores the latest char of the PENULTIM word on the buffer
-     *
-     * <p>
-     * It's required to check if a space between the previous char and the
-     * current one should (or not) be added (or remove, also)
-     * </p>
-     */
+    // stores the latest char of penultimate word in the buffer
     private static char pivot;
 
     /**
-     * Function to prepare inner object Singleton state
+     * Prepare inner singleton
      */
     protected static void prepareInstance() {
-        // if not initialized
         if (strBuf == null) strBuf = new StringBuffer();
-        // else, reset
         else strBuf.setLength(0);
     }
 
     protected static String getBufferAsString() { return strBuf.toString(); }
 
     protected static void handleSpacePushing() {
-        // switch on latest buffer char
         switch (getLatestChar()) {
             // if buffer is empty
             case EMPTY_CHAR_SIGN:
-            // if latest is already a space
+            // handle space pushing on next char
             case ' ':
-            // chars that should be gap checked on next char pushing
             case '+':
             case '-':
             case '(':
             case ')':
-                // get out the function
                 return;
-            // else case
             default:
                 pushChar(' ');
         }
     }
 
     protected static void handleOperPushing(char oper) {
-        // switch the latest char to check if space gap should be added
         switch (getLatestChar()) {
-            // if buffer is empty
             case EMPTY_CHAR_SIGN:
-            // latest is already space
             case ' ':
-            // latest is open pare (don't turn this "(-1 ..." into
-            // this "( -1 ..."
             case '(':
                 break;
-            // else case, add gap
             default:
                 pushChar(' ');
         }
-        // push the current operator char
         pushChar(oper);
     }
 
     protected static void handleParenPushing(char paren) {
         // get the pivot (check the class beginning)
         pivot = reverseCharLookup();
-        // switch on latest char
         switch (getLatestChar()) {
             case '/':
             case '*':
             case '^':
                 pushChar(' ');
                 break;
-            // case plus or minus sign
             case '+':
             case '-':
-                // if the pivot isn't empty (it means the current buffer isn't
-                // '+' or '-')
                 if (pivot != EMPTY_CHAR_SIGN) pushChar(' '); // push a gap
                 break;
-            // if latest is space
             case ' ':
-                // and the curchar is closing parenthesis, remove the space:
-                // turn this "... + 23 )" into this "... + 23)"
                 if (paren == ')') removeCharAt(getLength() - 1);
                 break;
             case EMPTY_CHAR_SIGN:
@@ -161,7 +116,6 @@ class StringBufferHandler {
             default:
                 if (paren == '(') pushChar(' ');
         }
-        // push the paren
         pushChar(paren);
     }
 
@@ -169,7 +123,6 @@ class StringBufferHandler {
         // get pivot (check the class beginning)
         pivot = reverseCharLookup();
         switch (getLatestChar()) {
-            // if latest is any of these:
             case ')':
             case '/':
             case '^':
@@ -178,9 +131,7 @@ class StringBufferHandler {
             case '+':
                 pushChar(' '); // add gap
                 break;
-            // if latest plus or minus
             case '-':
-                // check if pivot is gap reasonable
                 if (pivot != '-'
                     && pivot != '+'
                     && pivot != '*'
@@ -195,6 +146,10 @@ class StringBufferHandler {
 
     private static boolean isEmpty() { return strBuf.isEmpty(); }
 
+    /**
+     * Returns the latest char from buffer object (EMPTY_CHAR_SIGN if buffer is
+     * empty).
+     */
     private static char getLatestChar() {
         return isEmpty()
             ? EMPTY_CHAR_SIGN
@@ -219,13 +174,9 @@ class StringBufferHandler {
      */
     private static char reverseCharLookup() {
         boolean stopOnNext = false;
-        // gradually decrease the buffer index
         for (int ind = getLength() - 1; ind >= 0; ind--)
-            // if space found, enable stop and continue
             if (getCharAt(ind) == ' ') stopOnNext = true;
-            // return only when stop is enabled
             else if (stopOnNext) return getCharAt(ind);
-        // if outside loop (ind goes out of scope (-1))
         return EMPTY_CHAR_SIGN;
     }
 
