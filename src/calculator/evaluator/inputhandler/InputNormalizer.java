@@ -27,11 +27,8 @@ public class InputNormalizer {
      * StringBufferHandler docstring)
      */
     public static String normalize(String input) {
-        // avoid useless work by returning when empty
         if (input.isEmpty()) return input;
-        // prepare strBuf instance
         StringBufferHandler.prepareInstance();
-        // foreach char
         for (char c : input.toCharArray()) switch (c) {
             // if is space
             case ' ':
@@ -50,11 +47,9 @@ public class InputNormalizer {
             case '^':
                 StringBufferHandler.handleOperPushing(c);
                 break;
-            // else
             default:
                 StringBufferHandler.handleOtherPushing(c);
         }
-        // return the final object as String
         return StringBufferHandler.getBufferAsString();
     }
 
@@ -67,10 +62,13 @@ public class InputNormalizer {
         StringBuffer buffer = new StringBuffer();
         int savedIndex = 0;
         String savedStr;
-        for (int i = 0; i < input.length(); i++) switch (input.charAt(i)) {
+        for (int i = 0; i < input.length(); i++)
+        switch (input.charAt(i)) {
             case ' ':
                 savedStr = buffer.toString();
-                list.add(new Token(TokenKind.from(savedStr), savedStr, savedIndex));
+                list.add(new Token(TokenKind.from(savedStr),
+                                   savedStr,
+                                   savedIndex));
                 buffer.setLength(0);
                 savedIndex = i + 1;
                 break;
@@ -82,20 +80,22 @@ public class InputNormalizer {
             case ')':
                 savedStr = buffer.toString();
                 list.add(new Token(TokenKind.from(savedStr),
-                                                  savedStr, savedIndex));
+                                   savedStr,
+                                   savedIndex));
                 savedStr = String.format("%c", input.charAt(i));
-                list.add(new Token(TokenKind.from(String.format("%c", input.charAt(i))),
-                                                  savedStr, i));
+                list.add(new Token(TokenKind.from(savedStr), savedStr, i));
                 buffer.setLength(0);
                 savedIndex = i + 1;
                 break;
             default:
                 buffer.append(input.charAt(i));
         }
-        if (!buffer.isEmpty()) list.add(new Token(TokenKind.from(buffer.toString()),
-                                                  buffer.toString(),
-                                                  savedIndex));
-        return list.stream()
+        if (!buffer.isEmpty())
+            list.add(new Token(TokenKind.from(buffer.toString()),
+                               buffer.toString(),
+                               savedIndex));
+        return list
+            .stream()
             .filter(element -> !element.isEmpty())
             .collect(Collectors.toList());
     }
