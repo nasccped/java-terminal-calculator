@@ -1,5 +1,10 @@
 package calculator.evaluator.tokenizer;
 
+import calculator.evaluator.evaluable.DivisionByZero;
+import calculator.evaluator.evaluable.Evaluable;
+import calculator.evaluator.evaluable.Indexable;
+import calculator.evaluator.evaluable.NonEvaluableToken;
+
 /**
  * Token kind/value holder
  *
@@ -8,7 +13,7 @@ package calculator.evaluator.tokenizer;
  * It have other features (getters) when dealing with tree parsing.
  * </p>
  */
-public class Token {
+public class Token implements Evaluable, Indexable {
 
     private final TokenKind kind;
     private final String value;
@@ -46,15 +51,9 @@ public class Token {
 
     public String getValue() { return value; }
 
-    public int getStartInd() { return startInd; }
-
-    public int getEndInd() { return endInd; }
-
+    @Override
     public int[] getIndexRange() {
-        int[] result = new int[2];
-        result[0] = startInd;
-        result[1] = startInd + value.length();
-        return result;
+        return new int[]{startInd, endInd};
     }
 
     public boolean isNumeric() {
@@ -65,6 +64,16 @@ public class Token {
             case NEG_FLOAT:
                 return true;
             default: return false;
+        }
+    }
+
+    public boolean isParen() {
+        switch (kind) {
+            case OPN_PAREN:
+            case CLS_PAREN:
+                return true;
+            default:
+                return false;
         }
     }
 
@@ -82,5 +91,11 @@ public class Token {
     @Override
     public String toString() {
         return String.format("[%d, %s]", startInd, kind + valueUnwrapper());
+    }
+
+    @Override
+    public double evaluate() throws NonEvaluableToken, DivisionByZero {
+        if (isNumeric()) return Double.parseDouble(value);
+        throw new NonEvaluableToken(this);
     }
 }
