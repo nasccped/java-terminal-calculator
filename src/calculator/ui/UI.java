@@ -30,29 +30,28 @@ public class UI {
      * </p>
      */
     public static void printPannel(IO io, ExpressionResult result) {
-        // get error indexes
         int[] errorRange = result.getErrorRange();
-        // get expression, underscores and status output
         String expressionRow = getExpressionRow(result.getExpression(),
                                                 errorRange);
         String underscoreRow = getUnderscoreRow(errorRange);
         String statusRow = getStatusRow(result.getStatus(),
                                         result.getResult());
-        // print them
         io.println(expressionRow);
         io.println(underscoreRow);
         io.println(statusRow);
-        // reset the escape (if not yet reseted)
         io.print(RESET);
     }
 
     /**
-     * If the error mark should be ignored
+     * If the error mark should be ignored.
      */
     private static boolean avoidErrorMark(int[] errorRange) {
         return (errorRange[0] < 0 || errorRange[1] <= errorRange[0]);
     }
 
+    /**
+     * Apply escape styling to the expression (ie, when errors occurs).
+     */
     private static String getExpressionRow(String expression,
                                            int[] errorRange) {
         return String.format("%sExpression: %s%s",
@@ -67,11 +66,8 @@ public class UI {
     private static String paintExpression(String expression,
                                           int[] errorRange) {
         if (avoidErrorMark(errorRange)) return expression;
-
         StringBuffer buffer = new StringBuffer(expression);
-        // insert end first (NO STRLEN CONFLICTING),
         buffer.insert(errorRange[1], WHITE);
-        // insert start (red escape)
         buffer.insert(errorRange[0], RED);
         return buffer.toString();
     }

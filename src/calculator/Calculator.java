@@ -12,7 +12,6 @@ import calculator.ui.UI;
  *
  * Works as:
  *  - take user input (String)
- *  - handle input (command | expression)
  *  - display the respective output
  *  </p>
  */
@@ -25,18 +24,15 @@ public class Calculator {
      * Calculator class 'main' function
      */
     public static void run(IO ioObject) {
+
         io = ioObject;
-        // create input and expression result as default
         String input = "";
         ExpressionResult expRes = new ExpressionResult();
 
-        // while not quit
         while (!input.equalsIgnoreCase(":quit")) {
-            // clear terminal + print panel
             io.clearTerm();
             UI.printPannel(io, expRes);
             io.println();
-            // take expression + set new values
             input = io.promptedInput("> ");
             Evaluator.setExpressionResult(input, expRes);
         }
