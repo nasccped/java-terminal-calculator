@@ -1,0 +1,8 @@
+# This file was created using the kojamp-CLI app.
+# Manual changes aren't encouraged!
+# If you found any error or have trouble using it, consider
+# opening the official repository: https://github.com/nasccped/kojamp
+
+[project]
+name = "JavaTermCalc"
+kind = "java"
