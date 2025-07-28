@@ -54,3 +54,8 @@ compile and run:
 ```
 
 </details>
+
+License
+-------
+
+This project is under the [MIT license](./LICENSE).
