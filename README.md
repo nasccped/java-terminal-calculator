@@ -59,3 +59,8 @@ License
 -------
 
 This project is under the [MIT license](./LICENSE).
+
+Extra
+-----
+
+You can check extra info at [docs folder](./docs).
