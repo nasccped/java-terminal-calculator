@@ -4,12 +4,6 @@ Java Terminal Calculator 🧮
 This project aims to help a friend in a side project and work on
 knowledge in software structuring + OOP.
 
-> [!NOTE]
->
-> This page is just a short brief of the project. If you want to get
-> full details, take a look at
-> [`docs/00-README.md`](./blob/main/docs/00-README.md)!
-
 Requirements 📋
 --------------
 
@@ -17,35 +11,46 @@ To run this project, you'll need:
 
 1. [git](https://git-scm.com/)
 2. [java & javac](https://www.oracle.com/java/)
-3. [kojamp](https://crates.io/crates/kojamp) project manager
-   _(optional)_
 
 Usage 🪁
 -------
 
-Here are some steps to get, compile and use this project:
+1. Clone the repository
+```sh
+git clone --depth 1 https://github.com/nasccped/java-terminal-calculator && \
+cd java-terminal-calculator
+```
+2. Compile the source code and run
 
-1. **Clone:** open you terminal and clone the repository
-   ```sh
-   git clone --depth 1 https://github.com/nasccped/java-terminal-calculator
-   ```
+This project was built under the
+[kojamp](https://github.com/nasccped/kojamp) project manager, so,
+there's three ways to compile and run it:
 
-2. **Remove git:** enter on the cloned repo and clean the unnecessary git
-   folder
-   ```sh
-   cd java-terminal-calculator
-   rm -rf .git # for bash/shell terminal
-   # If you're on Windows Powershell, you can use this:
-   # Remove-Item -Recurse -Force .git
-   ```
+<details><summary>If you have `kojamp`</summary>
 
-3. **Running:** compile the program's source code and run the
-   bytecode
-   ```sh
-   kojamp build && kojamp run
-   ```
+compile and run using the `kojamp` CLI:
+```sh
+make build run
+# if you doesn't have make at your machine, you can still use kojamp
+# kojamp build && kojamp run
+```
 
-> [!TIP]
->
-> Alternative ways to compile and run can be found at `docs`
-> directory!
+</details>
+
+<details><summary>If you don't have kojamp (and is in a 'sh' terminal)</summary>
+
+turn the shell script into executable + build and run the source:
+```sh
+chmod +x ./maksh.sh && ./maksh.sh build run
+```
+
+</details>
+
+<details><summary>If you don't have kojamp (and is in Windows - runs '.bat')</summary>
+
+compile and run:
+```sh
+./makbat.bat build run
+```
+
+</details>
