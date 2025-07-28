@@ -26,7 +26,7 @@ This project was built under the
 [kojamp](https://github.com/nasccped/kojamp) project manager, so,
 there's three ways to compile and run it:
 
-<details><summary>If you have `kojamp`</summary>
+<details><summary>If you have `kojamp`</summary></br>
 
 compile and run using the `kojamp` CLI:
 ```sh
@@ -37,7 +37,7 @@ make build run
 
 </details>
 
-<details><summary>If you don't have kojamp (and is in a 'sh' terminal)</summary>
+<details><summary>If you don't have kojamp (and is in a 'sh' terminal)</summary></br>
 
 turn the shell script into executable + build and run the source:
 ```sh
@@ -46,7 +46,7 @@ chmod +x ./maksh.sh && ./maksh.sh build run
 
 </details>
 
-<details><summary>If you don't have kojamp (and is in Windows - runs '.bat')</summary>
+<details><summary>If you don't have kojamp (and is in Windows - runs '.bat')</summary></br>
 
 compile and run:
 ```sh
